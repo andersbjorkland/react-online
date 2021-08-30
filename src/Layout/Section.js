@@ -1,15 +1,19 @@
 import styled from 'styled-components'
+import DefaultLayoutContainer from './DefaultLayoutContainer';
 import InnerContainer from './InnerContainer';
 
 
 const StyledSection = styled.section`
-    background: blue;
     width: 100%;
     padding: 0 2rem;
 `
 
 
-const Section = (props) => <StyledSection><InnerContainer>{props.children}</InnerContainer></StyledSection>;
+const Section = (props) => (
+    <DefaultLayoutContainer>
+        {props.children}
+    </DefaultLayoutContainer>
+);
 
 
 
