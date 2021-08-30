@@ -15,11 +15,17 @@ export const GlobalStyle = createGlobalStyle`
         --textColors: var(--lightPink);
 
         h1, h2, h3, h4, h5, h6 {
-            color: var(--pinkWhite)
+            color: var(--pinkWhite);
+            font-family: 'Roboto', sans-serif;
         }
 
         p {
             color: var(--lightPink);
+            font-family: 'Lato', sans-serif;
+        }
+
+        a {
+            font-family: 'Lato', sans-serif;
         }
 
 
