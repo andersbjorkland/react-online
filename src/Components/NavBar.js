@@ -31,7 +31,7 @@ const NavLink = (props) => {
             href={props.href ?? "#"} 
             className={props.className}
             animate={{  opacity: 1}}
-            transition={{ delay: (props.order) * 0.1, from: 0, duration: 0.3}}
+            transition={{ delay: (props.order) * 0.095, from: 0, duration: 0.3}}
             
             whileHover={{
                 color: "var(--lightPink)"
