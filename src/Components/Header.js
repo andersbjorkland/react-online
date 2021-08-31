@@ -50,7 +50,7 @@ const Header = () => {
                     <LogoImg src={logo} alt="Site Logo" />
                     <BurgerToggler toggled={toggled} setToggled={setToggled} />
                 </div>
-                <NavBar toggled={toggled} />
+                <nav><NavBar toggled={toggled} /></nav>
             </HeaderContainer>
         </DefaultLayoutContainer>
     );

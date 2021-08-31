@@ -1,3 +1,4 @@
+import {motion} from "framer-motion";
 import styled from "styled-components";
 
 const LinkContainer = styled.a`
@@ -17,7 +18,6 @@ const LinkContainer = styled.a`
         font-weight: 300;
     }
 
-    
 `;
 
 const Blurred = styled.div`
@@ -34,10 +34,11 @@ const NavLink = (props) => {
     );
 };
 
-const NavBarContainer = styled.nav`
+const NavBarContainer = styled(motion.div)`
     position: relative;
     display: flex;
     justify-content: flex-end;
+    opacity: 0;
     
     >div {
         background: var(--obsidianDark08) ;
@@ -62,7 +63,7 @@ const NavBarContainer = styled.nav`
 const NavBar = ({toggled}) => {
     if (toggled) {
         return (
-            <NavBarContainer>
+            <NavBarContainer animate={{ opacity: 1 }}>
                 <div>
                     <NavLink href="#home" className="active">home</NavLink>
                     <NavLink href="#home">showcases</NavLink>
