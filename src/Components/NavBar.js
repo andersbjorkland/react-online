@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import DefaultLayoutContainer from "../Layout/DefaultLayoutContainer";
 
 const LinkContainer = styled.a`
     font-size: 2rem;
@@ -15,7 +14,7 @@ const LinkContainer = styled.a`
     }
 
     &.active {
-        font-weight: bold;
+        font-weight: 300;
     }
 
     
@@ -35,24 +34,47 @@ const NavLink = (props) => {
     );
 };
 
-const NavBarStyle = styled.nav`
+const NavBarContainer = styled.nav`
+    position: relative;
     display: flex;
-    flex-direction: column;
-
-    gap: 1rem;
+    justify-content: flex-end;
     
+    >div {
+        background: var(--obsidianDark08) ;
+        z-index: var(--menuIndex);
+        position: absolute;
+        right: -3rem;
+        top: -4rem;
+        padding-top: 5rem;
+        padding-right: 4rem;
+
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+        position: absolute;    
+    }
 `;
 
-const NavBar = () => (
-    <DefaultLayoutContainer>
-        <NavBarStyle>
-            <NavLink href="#home" className="active">home</NavLink>
-            <NavLink href="#home">showcases</NavLink>
-            <NavLink href="#home">articles</NavLink>
-            <NavLink href="#home">about</NavLink>
-            <NavLink href="#home">contact</NavLink>
-        </NavBarStyle>
-    </DefaultLayoutContainer>
-);
+const NavBar = ({toggled}) => {
+    if (toggled) {
+        return (
+            <NavBarContainer>
+                <div>
+                    <NavLink href="#home" className="active">home</NavLink>
+                    <NavLink href="#home">showcases</NavLink>
+                    <NavLink href="#home">articles</NavLink>
+                    <NavLink href="#home">about</NavLink>
+                    <NavLink href="#home">contact</NavLink>
+                </div>
+            </NavBarContainer>
+        );
+    }    
+    
+    return null;
+}
 
 export default NavBar;

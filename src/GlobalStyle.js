@@ -4,15 +4,23 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         // COLORS
         --obsidianDark: #141414;
+        --obsidianDark08: rgba(20,20,20,0.9);
 
         --darkPurple: #4E044B;
-        --lightPink: ;
+        --lightPink: #FECDFC;
         --pinkWhite: #FFF0FE;
 
         --darkBlue: #04264E;
 
         --headingColors: var(--pinkWhite);
         --textColors: var(--lightPink);
+
+        // INDICES
+        --headerIndex: 3;
+        --menuIndex: 2;
+        --contentIndex: 1;
+
+
 
         h1, h2, h3, h4, h5, h6 {
             color: var(--pinkWhite);
