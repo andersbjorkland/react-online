@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
         --headingColors: var(--pinkWhite);
         --textColors: var(--lightPink);
 
+
         // INDICES
         --headerIndex: 3;
         --menuIndex: 2;
@@ -65,4 +66,9 @@ export const GlobalStyle = createGlobalStyle`
         background: #04264E;
         background: linear-gradient(90deg, #04264E 14%, #031D3A 100%);
     }
+
+    .dark-bg {
+        background-color: var(--obsidianDark);
+    }
+
 `;

@@ -5,11 +5,12 @@ import InnerContainer from './InnerContainer';
 const StyledDiv = styled.div`
     width: 100%;
     padding: 0 2rem;
+    z-index: 4;
 `
 
 
 const DefaultLayoutContainer = (props) => (
-    <StyledDiv>
+    <StyledDiv className={props.className}>
         <InnerContainer>
             {props.children}
         </InnerContainer>
