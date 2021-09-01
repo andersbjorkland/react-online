@@ -1,5 +1,7 @@
 import {motion} from "framer-motion";
 import styled from "styled-components";
+import Neon from "../Layout/Neon";
+import Button from "./Button";
 
 const LinkContainer = styled(motion.a)`
     font-size: 2rem;
@@ -8,7 +10,7 @@ const LinkContainer = styled(motion.a)`
     position: relative;
     text-decoration: none;
     font-weight: lighter;
-    opacity: 0.1;
+    /* opacity: 0.1; */
 
     > * {
         position: relative;
@@ -25,21 +27,29 @@ const Blurred = styled.div`
     position: absolute;
 `;
 
+const NavItem = styled(motion.div)`
+    opacity: 0.1;
+`;
+
 const NavLink = (props) => {
     return (
-        <LinkContainer 
-            href={props.href ?? "#"} 
-            className={props.className}
+        <NavItem
             animate={{  opacity: 1}}
             transition={{ delay: (props.order) * 0.095, from: 0, duration: 0.3}}
-            
+
             whileHover={{
                 color: "var(--lightPink)"
             }}
         >
-            <div>{props.children}</div>
-            <Blurred>{props.children}</Blurred>
-        </LinkContainer>
+            <LinkContainer
+                href={props.href ?? "#"}
+                className={props.className}
+            >
+                {/* <div>{props.children}</div>
+                <Blurred>{props.children}</Blurred> */}
+                <Neon>{props.children}</Neon>
+            </LinkContainer>
+        </NavItem>
     );
 };
 
@@ -47,7 +57,7 @@ const NavBarContainer = styled.div`
     position: relative;
     display: flex;
     justify-content: flex-end;
-    
+
     >div {
         background: var(--obsidianDark08) ;
         z-index: var(--menuIndex);
@@ -62,7 +72,7 @@ const NavBarContainer = styled.div`
         flex-direction: column;
         align-items: flex-end;
         gap: 1rem;
-        position: absolute;    
+        position: absolute;
     }
 `;
 
@@ -76,11 +86,21 @@ const NavBar = ({toggled}) => {
                     <NavLink order={3} href="#home">articles</NavLink>
                     <NavLink order={4} href="#home">about</NavLink>
                     <NavLink order={5} href="#home">contact</NavLink>
+                    <NavItem
+                        animate={{  opacity: 1}}
+                        transition={{ delay: 6 * 0.095, from: 0, duration: 0.3}}
+            
+                        whileHover={{
+                            color: "var(--lightPink)"
+                        }}
+                    >
+                        <Button callback={() => console.log("Hello!")}>Backlight Off</Button>
+                    </NavItem>
                 </div>
             </NavBarContainer>
         );
-    }    
-    
+    }
+
     return null;
 }
 
