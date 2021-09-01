@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import LightsContext from "../Hooks/LightsContext";
 
 const NeonContainer = styled.div`
     color: white;
@@ -16,11 +18,15 @@ const Blurred = styled.div`
     position: absolute;
 `;
 
-const Neon = (props) => (
-    <NeonContainer>
-        <div>{props.children}</div>
-        <Blurred>{props.children}</Blurred>
-    </NeonContainer>
-);
+const Neon = (props) => {
+    const context = useContext(LightsContext);
+
+    return (
+        <NeonContainer>
+            <div>{props.children}</div>
+            {context.neonActivated ? <Blurred>{props.children}</Blurred> : null}
+        </NeonContainer>
+    );
+}
 
 export default Neon;

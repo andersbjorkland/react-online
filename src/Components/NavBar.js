@@ -1,7 +1,10 @@
 import {motion} from "framer-motion";
+import { useContext } from "react";
 import styled from "styled-components";
+import LightsContext from "../Hooks/LightsContext";
 import Neon from "../Layout/Neon";
 import Button from "./Button";
+import TogglerButton from "./TogglerButton";
 
 const LinkContainer = styled(motion.a)`
     font-size: 2rem;
@@ -64,6 +67,7 @@ const NavBarContainer = styled.div`
         position: absolute;
         top: -4rem;
         padding-top: 5rem;
+        padding-right: 0.5rem;
 
         height: 100vh;
         width: 100vw;
@@ -77,6 +81,8 @@ const NavBarContainer = styled.div`
 `;
 
 const NavBar = ({toggled}) => {
+    const context = useContext(LightsContext);
+
     if (toggled) {
         return (
             <NavBarContainer>
@@ -94,7 +100,11 @@ const NavBar = ({toggled}) => {
                             color: "var(--lightPink)"
                         }}
                     >
-                        <Button callback={() => console.log("Hello!")}>Backlight Off</Button>
+                        <LightsContext.Consumer>
+                            {({toggleLight}) => (
+                                <TogglerButton callback={toggleLight} toggleState={!context.neonActivated}>💡</TogglerButton>
+                            )}
+                        </LightsContext.Consumer>
                     </NavItem>
                 </div>
             </NavBarContainer>
