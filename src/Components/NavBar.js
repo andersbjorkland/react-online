@@ -52,10 +52,8 @@ const NavBarContainer = styled.div`
         background: var(--obsidianDark08) ;
         z-index: var(--menuIndex);
         position: absolute;
-        right: -3rem;
         top: -4rem;
         padding-top: 5rem;
-        padding-right: 4rem;
 
         height: 100vh;
         width: 100vw;
