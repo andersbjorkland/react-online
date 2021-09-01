@@ -71,4 +71,15 @@ export const GlobalStyle = createGlobalStyle`
         background-color: var(--obsidianDark);
     }
 
+    .white {
+        color: white;
+    }
+    .white08 {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .dark {
+        color: var(--obsidianDark)
+    }
+
 `;

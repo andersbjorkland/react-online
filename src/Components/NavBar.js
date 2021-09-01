@@ -1,3 +1,5 @@
+import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {motion} from "framer-motion";
 import { useContext } from "react";
 import styled from "styled-components";
@@ -102,7 +104,9 @@ const NavBar = ({toggled}) => {
                     >
                         <LightsContext.Consumer>
                             {({toggleLight}) => (
-                                <TogglerButton callback={toggleLight} toggleState={!context.neonActivated}>💡</TogglerButton>
+                                <TogglerButton callback={toggleLight} toggleState={!context.neonActivated}>
+                                    <FontAwesomeIcon className={context.neonActivated ? "white08" : "dark"} icon={faLightbulb} />
+                                </TogglerButton>
                             )}
                         </LightsContext.Consumer>
                     </NavItem>
