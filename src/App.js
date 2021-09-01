@@ -9,7 +9,6 @@ function App() {
       <GlobalStyle />
       <Header />
       <NavBar />
-      <Section><h2>Hello There!</h2></Section>
     </div>
   );
 }
