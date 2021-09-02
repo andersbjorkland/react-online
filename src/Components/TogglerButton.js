@@ -16,7 +16,7 @@ const StyledButton = styled.button`
     justify-content: center;
     align-items: center;
 
-    transition: 0.3s;
+    transition: 0.2s;
 
     box-shadow: 0px 4px 4px rgba(0,0,0,0.8);
     background: linear-gradient(0deg, rgba(65,65,65,1) 0%, rgba(157,157,157,1) 100%);
@@ -50,7 +50,6 @@ const TogglerButton = ({callback, toggleState = false, ...props}) => {
     const handleClick = () => {
         setToggle(!toggle);
         callback();
-        console.log(toggle);
     }
     
     return (

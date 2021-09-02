@@ -5,7 +5,6 @@ import { useContext } from "react";
 import styled from "styled-components";
 import LightsContext from "../Hooks/LightsContext";
 import Neon from "../Layout/Neon";
-import Button from "./Button";
 import TogglerButton from "./TogglerButton";
 
 const LinkContainer = styled(motion.a)`
@@ -27,10 +26,6 @@ const LinkContainer = styled(motion.a)`
 
 `;
 
-const Blurred = styled.div`
-    filter: blur(4px);
-    position: absolute;
-`;
 
 const NavItem = styled(motion.div)`
     opacity: 0.1;
