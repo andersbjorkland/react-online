@@ -4,7 +4,7 @@ import InnerContainer from './InnerContainer';
 
 const StyledDiv = styled.div`
     width: 100%;
-    padding: 0 2rem;
+    padding: 0;
     z-index: 4;
 `
 

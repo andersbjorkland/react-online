@@ -15,17 +15,29 @@ export const GlobalStyle = createGlobalStyle`
         --headingColors: var(--pinkWhite);
         --textColors: var(--lightPink);
 
+        --linearPurple: linear-gradient(90deg, #4E044B 14%, #3A0338 100%);
 
         // INDICES
         --headerIndex: 3;
         --menuIndex: 2;
         --contentIndex: 1;
 
+        // SIZES
+        font-size: 12px;
+
 
 
         h1, h2, h3, h4, h5, h6 {
             color: var(--pinkWhite);
             font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            font-size: 2rem;
+
+            .md-text {
+                font-size: 1.5rem;
+            }
         }
 
         p {
@@ -40,10 +52,6 @@ export const GlobalStyle = createGlobalStyle`
 
         // DIMENSIONS
         --maxWidth: 1200px;
-
-        h1 {
-            font-size: 4rem;
-        }
 
         
     }

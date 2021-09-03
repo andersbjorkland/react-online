@@ -1,6 +1,5 @@
 import DefaultLayoutContainer from './DefaultLayoutContainer';
 
-
 const Section = (props) => (
     <section>
         <DefaultLayoutContainer>
