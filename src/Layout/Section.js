@@ -1,7 +1,7 @@
 import DefaultLayoutContainer from './DefaultLayoutContainer';
 
-const Section = (props) => (
-    <section>
+const Section = ({id = false, ...props}) => (
+    <section id={id}>
         <DefaultLayoutContainer>
             {props.children}
         </DefaultLayoutContainer>

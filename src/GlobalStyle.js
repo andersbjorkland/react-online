@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
         --pinkWhite: #FFF0FE;
 
         --darkBlue: #04264E;
+        --lightBlue: #CEE4FD;
 
         --headingColors: var(--pinkWhite);
         --textColors: var(--lightPink);
@@ -26,34 +27,46 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 12px;
 
 
-
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--pinkWhite);
-            font-family: 'Roboto', sans-serif;
-        }
-
-        h1 {
-            font-size: 2rem;
-
-            .md-text {
-                font-size: 1.5rem;
-            }
-        }
-
-        p {
-            color: var(--lightPink);
-            font-family: 'Lato', sans-serif;
-        }
-
-        a {
-            font-family: 'Lato', sans-serif;
-        }
-
-
         // DIMENSIONS
         --maxWidth: 1200px;
 
         
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--pinkWhite);
+        font-family: 'Roboto', sans-serif;
+    }
+
+    h1 {
+        font-size: 2rem;
+
+        .md-text {
+            font-size: 1.5rem;
+        }
+    }
+
+    h3 {
+        font-weight: lighter;
+        font-size: 1.4rem;
+        margin: 2rem 0 0 0;
+    }
+
+    h4, h5, h6 {
+        font-weight: normal;
+
+        &:first-child {
+            margin: 0.25rem 0;
+        }
+    }
+
+    p {
+        color: var(--lightPink);
+        font-family: 'Lato', sans-serif;
+    }
+
+    a {
+        font-family: 'Lato', sans-serif;
     }
 
     * {
@@ -73,6 +86,10 @@ export const GlobalStyle = createGlobalStyle`
     .linear--blue {
         background: #04264E;
         background: linear-gradient(90deg, #04264E 14%, #031D3A 100%);
+    }
+
+    .blue {
+        color: var(--lightBlue);
     }
 
     .dark-bg {

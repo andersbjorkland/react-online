@@ -3,8 +3,7 @@ import Header from './Components/Header';
 import LightsContext from './Hooks/LightsContext';
 import { lightsContext } from './configuration/context';
 import { useState } from 'react';
-import Section from './Layout/Section';
-import HeadingContainer from './Components/HeadingContainer';
+import Home from './Sections/Home';
 
 
 function App() {
@@ -20,9 +19,7 @@ function App() {
       <div className="App">
         <GlobalStyle />
         <Header />
-        <Section>
-          <HeadingContainer><h1><span className="md-text">I design, develop and deploy</span><br /> modern web solutions</h1></HeadingContainer>
-        </Section>
+        <Home />
       </div>
     </LightsContext.Provider>
   );
