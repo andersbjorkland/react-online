@@ -18,13 +18,13 @@ const Blurred = styled.div`
     position: absolute;
 `;
 
-const Neon = (props) => {
+const Neon = ({active = true, ...props}) => {
     const context = useContext(LightsContext);
 
     return (
         <NeonContainer>
             <div>{props.children}</div>
-            {context.neonActivated ? <Blurred>{props.children}</Blurred> : null}
+            {context.neonActivated && active  ? <Blurred>{props.children}</Blurred> : null}
         </NeonContainer>
     );
 }

@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
         --contentIndex: 1;
 
         // SIZES
-        font-size: 12px;
+        font-size: 16px;
 
 
         // DIMENSIONS
