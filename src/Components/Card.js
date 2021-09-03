@@ -29,36 +29,37 @@ export const contentObject = {
     download: false
 }
 
+const ControllerContainer = styled.div`
+    width: 100%;
+    
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+`;
+
+const ControlButton = styled.button`
+    border: none;
+    background: none;
+
+    &.inactive {
+        * {
+            color: #2E2E2E;
+        }
+    }
+`;
+
+const ControlLink = styled.a`
+    border: none;
+    background: none;
+
+    &.inactive {
+        * {
+            color: #2E2E2E;
+        }
+    }
+`;
+
 const CardController = ({content}) => {
-    const ControllerContainer = styled.div`
-        width: 100%;
-        
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-    `;
-
-    const ControlButton = styled.button`
-        border: none;
-        background: none;
-
-        &.inactive {
-            * {
-                color: #2E2E2E;
-            }
-        }
-    `;
-
-    const ControlLink = styled.a`
-        border: none;
-        background: none;
-
-        &.inactive {
-            * {
-                color: #2E2E2E;
-            }
-        }
-    `;
 
     const activeButtons = {
         text: content.summary ?? false,
@@ -75,7 +76,7 @@ const CardController = ({content}) => {
     }
 
     const buttons = Object.keys(activeButtons).map(key => {
-        if (key === "text") {
+        if (key === "text" || activeButtons[key] === false) {
             return (
                 <ControlButton key={key} className={activeButtons[key] !== false ? null : "inactive"}>
                     <Neon active={activeButtons[key] !== false}>{buttonIcons[key]}</Neon>
@@ -84,7 +85,7 @@ const CardController = ({content}) => {
         }
 
         return (
-            <ControlLink href={activeButtons[key]} target="_blank" key={key} className={activeButtons[key] !== false ? null : "inactive"}>
+            <ControlLink href={activeButtons[key] ?? null} target="_blank" key={key} className={activeButtons[key] !== false ? null : "inactive"}>
                 <Neon active={activeButtons[key] !== false}>{buttonIcons[key]}</Neon>
             </ControlLink>
         );
@@ -98,6 +99,25 @@ const CardController = ({content}) => {
 
 }
 
+const CardContainer = styled.div`
+    width: 100%;
+    max-width: 22rem;
+
+    h4, * {
+        color: ${props => props.content.type === TYPES.showcase ? "var(--lightPink)" : "var(--lightBlue)"};
+    }
+
+    &.minimize {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+`;
+
+const TextContainer = styled.div`
+    
+`;
+
 const Card = ({
         content,
         minimize = false 
@@ -105,33 +125,16 @@ const Card = ({
 
     
 
-    const Container = styled.div`
-        width: 100%;
-        max-width: 22rem;
-
-        h4, * {
-            color: ${content.type === TYPES.showcase ? "var(--lightPink)" : "var(--lightBlue)"};
-        }
-
-        &.minimize {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-    `;
-
     const image = content.img ? <Image src={content.img.src} alt={content.img.alt ?? ""} />: false;
-    const TextContainer = styled.div`
     
-    `;
 
     return (
-        <Container className={minimize ? "minimize" : false}>
+        <CardContainer content={content} className={minimize ? "minimize" : false}>
             <h4>{content.heading}</h4>
             {image}
             {minimize ? <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon> : <CardController content={content} />}
             
-        </Container>
+        </CardContainer>
     );
 }
 
