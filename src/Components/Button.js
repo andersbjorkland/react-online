@@ -1,5 +1,7 @@
+import timedClickHandler from "../utilities/timedClickHandler";
+
 const Button = ({callback, ...props}) => (
-    <button onClick={callback}>
+    <button onClick={() => timedClickHandler(callback)}>
         {props.children}
     </button>
 

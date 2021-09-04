@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import timedClickHandler from "../utilities/timedClickHandler";
 
 const StyledButton = styled.button`
     padding: 0;
@@ -53,7 +54,7 @@ const TogglerButton = ({callback, toggleState = false, ...props}) => {
     }
     
     return (
-        <StyledButton className={toggle ? 'active' : ''} onClick={handleClick}>{props.children}</StyledButton>
+        <StyledButton className={toggle ? 'active' : ''} onClick={() => timedClickHandler(handleClick)}>{props.children}</StyledButton>
     )
 };
 

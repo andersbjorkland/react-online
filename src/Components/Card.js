@@ -7,6 +7,7 @@ import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
 import {interactions} from "../configuration/interactions";
 import Neon from "../Layout/Neon";
+import timedClickHandler from "../utilities/timedClickHandler";
 import Image from "./Image";
 
 export const TYPES = {
@@ -86,27 +87,6 @@ const variants = {
 }
 
 const INTERACTION_TIMEOUT = interactions.buttonTimeout;
-
-const timedWrapper = () => {
-    let isClicked = false;
-
-    return (callback) => {
-        
-        if (!isClicked) {
-            isClicked = true;
-            callback();
-
-            setTimeout(() => {
-                isClicked = false;
-            }, INTERACTION_TIMEOUT);
-        }
-        
-
-    }
-}
-
-const timedClickHandler = timedWrapper();
-
 
 const CardController = ({content}) => {
 

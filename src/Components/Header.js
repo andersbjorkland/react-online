@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import logo from "../assets/logo.svg";
 import NavBar from "./NavBar";
+import timedClickHandler from "../utilities/timedClickHandler";
 
 
 const HeaderContainer = styled.header`
@@ -79,7 +80,7 @@ const BurgerIcon = ({toggled = false}) => {
 const BurgerToggler = ({toggled, setToggled}) => {
     
     return (
-        <BurgerTogglerContainer onClick={() => setToggled(!toggled)}>
+        <BurgerTogglerContainer onClick={() => timedClickHandler(() => setToggled(!toggled))}>
             <Neon>
                 <BurgerIcon toggled={toggled} />
             </Neon>
