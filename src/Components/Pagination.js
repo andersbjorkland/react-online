@@ -45,7 +45,25 @@ const Pagination = ({numberOfPages , ...props}) => {
 
     const pagesBtn = [];
 
-    for (let i = 0; i < numberOfPages; i++) {
+    let startIteration = 0;
+    
+    if (currentPage > 2) {
+        startIteration = currentPage - 3;
+
+        if (currentPage + 2 >= numberOfPages) {
+            startIteration = numberOfPages - 5;
+        }
+
+    }
+    
+    let stopIteration = currentPage + 2 < numberOfPages ? currentPage + 2 : numberOfPages; 
+
+    if (stopIteration < 5) {
+        stopIteration = numberOfPages >= 5 ? 5 : numberOfPages;
+    }
+
+
+    for (let i = startIteration; i < stopIteration; i++) {
         pagesBtn[i] = pageNumberButton(i+1, updateCurrentPage, currentPage);
     }
 
