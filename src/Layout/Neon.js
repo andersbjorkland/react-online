@@ -3,7 +3,7 @@ import styled from "styled-components";
 import LightsContext from "../Hooks/LightsContext";
 
 const NeonContainer = styled.div`
-    color: white;
+    /* color: white; */
     display: flex;
     position: relative;
     text-decoration: none;
@@ -11,6 +11,7 @@ const NeonContainer = styled.div`
     > * {
         position: relative;
     }
+
 `;
 
 const Blurred = styled.div`
@@ -22,7 +23,7 @@ const Neon = ({active = true, ...props}) => {
     const context = useContext(LightsContext);
 
     return (
-        <NeonContainer>
+        <NeonContainer className={props.className ?? false}>
             <div>{props.children}</div>
             {context.neonActivated && active  ? <Blurred>{props.children}</Blurred> : null}
         </NeonContainer>

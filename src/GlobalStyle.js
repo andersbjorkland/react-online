@@ -92,6 +92,10 @@ export const GlobalStyle = createGlobalStyle`
         color: var(--lightBlue);
     }
 
+    .pink {
+        color: var(--lightPink);
+    }
+
     .dark-bg {
         background-color: var(--obsidianDark);
     }

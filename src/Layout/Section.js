@@ -1,11 +1,16 @@
+import styled from 'styled-components';
 import DefaultLayoutContainer from './DefaultLayoutContainer';
 
+const Container = styled.section`
+    margin-top: 4rem;
+`;
+
 const Section = ({id = false, ...props}) => (
-    <section id={id}>
+    <Container id={id}>
         <DefaultLayoutContainer>
             {props.children}
         </DefaultLayoutContainer>
-    </section>
+    </Container>
 );
 
 

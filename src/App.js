@@ -4,6 +4,7 @@ import LightsContext from './Hooks/LightsContext';
 import { lightsContext } from './configuration/context';
 import { useState } from 'react';
 import Home from './Sections/Home';
+import Showcases from './Sections/Showcases';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <GlobalStyle />
         <Header />
         <Home />
+        <Showcases />
       </div>
     </LightsContext.Provider>
   );
