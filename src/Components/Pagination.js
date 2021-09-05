@@ -5,12 +5,21 @@ import Neon from "../Layout/Neon";
 import BareButton from "./BareButton";
 import triangle from "../assets/triangle.svg";
 
-const Container = styled.div`
+const Wrapper = styled.div`
     font-weight: lighter;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .active {
         font-weight: bold;
     }
+`;
+
+const ControlContainer = styled.div`
+    width: 12rem;
+    display: flex;
+    justify-content: space-between;
 `;
 
 const pageNumberButton = (number, callback, currentPage = 1) => (
@@ -55,7 +64,7 @@ const Pagination = ({numberOfPages , ...props}) => {
         }
 
     }
-    
+
     let stopIteration = currentPage + 2 < numberOfPages ? currentPage + 2 : numberOfPages; 
 
     if (stopIteration < 5) {
@@ -80,14 +89,14 @@ const Pagination = ({numberOfPages , ...props}) => {
     );
     
     return (
-        <Container>
-            <FlexContainer>
-                { prevBtn }
-                { pagesBtn }
-                { nextBtn }
-            </FlexContainer>
+        <Wrapper>
+            <ControlContainer>
+                    { prevBtn }
+                    { pagesBtn }
+                    { nextBtn }
+            </ControlContainer>
             {props.children}
-        </Container>
+        </Wrapper>
     );
 }
 
