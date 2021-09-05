@@ -111,4 +111,12 @@ export const GlobalStyle = createGlobalStyle`
         color: var(--obsidianDark)
     }
 
+    // MARGINS
+    .mt-3 {
+        margin-top: 3rem;
+    }
+
+    .mt-4 {
+        margin-top: 4rem;
+    }
 `;

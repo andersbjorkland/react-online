@@ -8,7 +8,7 @@ const Container = styled.div`
 const FlexContainer = (props) => {
     
     return (
-        <Container>
+        <Container className={props.className ?? false}>
             {props.children}
         </Container>
     );

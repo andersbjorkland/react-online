@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
 import BareButton from "./BareButton";
 import triangle from "../assets/triangle.svg";

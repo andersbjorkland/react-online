@@ -28,7 +28,7 @@ const Showcases = (props) => {
             <HeadingContainer>
                 <h2>showcases</h2>
             </HeadingContainer>
-            <FlexContainer>
+            <FlexContainer className="mt-4">
                 <ColumnContainer>
                     <Pagination numberOfPages={12}>
                         <Card content={{...featured}} />

@@ -6,7 +6,7 @@ const Container = styled.section`
 `;
 
 const Section = ({id = false, ...props}) => (
-    <Container id={id}>
+    <Container id={id} className={props.className ?? false}>
         <DefaultLayoutContainer>
             {props.children}
         </DefaultLayoutContainer>
