@@ -23,6 +23,16 @@ const pageNumberButton = (number, callback, currentPage = 1) => (
     </BareButton>
 );
 
+const StyledIterationIcon = styled.img`
+
+    position: relative;
+    bottom: -0.1rem;
+
+    &.previous {
+        transform: scaleX(-1);
+    }
+`;
+
 const Pagination = ({numberOfPages , ...props}) => {
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -41,12 +51,20 @@ const Pagination = ({numberOfPages , ...props}) => {
 
     const nextBtn = (
         <BareButton callback={() => updateCurrentPage(currentPage + 1)}>
-            <Neon className="pink"><img src={triangle} alt="" /></Neon>
-        </BareButton>);
+            <Neon className="pink"><StyledIterationIcon src={triangle} alt="" /></Neon>
+        </BareButton>
+    );
+
+    const prevBtn = (
+        <BareButton callback={() => updateCurrentPage(currentPage - 1)}>
+            <Neon className="pink"><StyledIterationIcon className="previous" src={triangle} alt="" /></Neon>
+        </BareButton>
+    );
     
     return (
         <Container>
             <FlexContainer>
+                { prevBtn }
                 { pagesBtn }
                 { nextBtn }
             </FlexContainer>
