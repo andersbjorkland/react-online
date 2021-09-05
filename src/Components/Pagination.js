@@ -3,6 +3,7 @@ import styled from "styled-components";
 import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
 import BareButton from "./BareButton";
+import triangle from "../assets/triangle.svg";
 
 const Container = styled.div`
     font-weight: lighter;
@@ -26,16 +27,28 @@ const Pagination = ({numberOfPages , ...props}) => {
 
     const [currentPage, setCurrentPage] = useState(1);
 
+    const updateCurrentPage = (number) => {
+        if (number >= 1 && number <= numberOfPages) {
+            setCurrentPage(number);
+        }
+    }
+
     const pagesBtn = [];
 
     for (let i = 0; i < numberOfPages; i++) {
-        pagesBtn[i] = pageNumberButton(i+1, setCurrentPage, currentPage);
+        pagesBtn[i] = pageNumberButton(i+1, updateCurrentPage, currentPage);
     }
+
+    const nextBtn = (
+        <BareButton callback={() => updateCurrentPage(currentPage + 1)}>
+            <Neon className="pink"><img src={triangle} alt="" /></Neon>
+        </BareButton>);
     
     return (
         <Container>
             <FlexContainer>
                 { pagesBtn }
+                { nextBtn }
             </FlexContainer>
             {props.children}
         </Container>
