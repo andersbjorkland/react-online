@@ -19,6 +19,7 @@ const ControlContainer = styled.div`
     width: 12rem;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1rem;
 `;
 
 const pageNumberButton = (number, callback, currentPage = 1) => (
@@ -41,13 +42,14 @@ const StyledIterationIcon = styled.img`
     }
 `;
 
-const Pagination = ({numberOfPages , ...props}) => {
+const Pagination = ({numberOfPages, setPage, ...props}) => {
 
     const [currentPage, setCurrentPage] = useState(1);
 
     const updateCurrentPage = (number) => {
         if (number >= 1 && number <= numberOfPages) {
             setCurrentPage(number);
+            setPage(number);
         }
     }
 

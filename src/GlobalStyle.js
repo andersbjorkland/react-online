@@ -119,4 +119,8 @@ export const GlobalStyle = createGlobalStyle`
     .mt-4 {
         margin-top: 4rem;
     }
+
+    .mb-2 {
+        margin-bottom: 2rem;
+    }
 `;

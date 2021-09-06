@@ -7,6 +7,7 @@ const NeonContainer = styled.div`
     display: flex;
     position: relative;
     text-decoration: none;
+    
 
     > * {
         position: relative;
@@ -17,6 +18,7 @@ const NeonContainer = styled.div`
 const Blurred = styled.div`
     filter: blur(4px);
     position: absolute;
+    
 `;
 
 const Neon = ({active = true, ...props}) => {

@@ -170,6 +170,10 @@ const CardContainer = styled.div`
         align-items: center;
         gap: 0.25rem;
     }
+
+    &.normal {
+        min-height: 20rem;
+    }
 `;
 
 const Card = ({
@@ -177,11 +181,11 @@ const Card = ({
         minimize = false 
     }) => {
 
-    const image = content.img ? <Image src={content.img.src} alt={content.img.alt ?? ""} />: false;
+    const image = content.img ? <Image className="slim" src={content.img.src} alt={content.img.alt ?? ""} />: false;
     
 
     return (
-        <CardContainer content={content} className={minimize ? "minimize" : false}>
+        <CardContainer content={content} className={minimize ? "minimize" : "normal"}>
             <h4>{content.heading}</h4>
             {image}
             {minimize ? <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon> : <CardController content={content} />}
