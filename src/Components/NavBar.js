@@ -14,7 +14,6 @@ const LinkContainer = styled(motion.a)`
     position: relative;
     text-decoration: none;
     font-weight: lighter;
-    /* opacity: 0.1; */
 
     > * {
         position: relative;
@@ -45,8 +44,6 @@ const NavLink = (props) => {
                 href={props.href ?? "#"}
                 className={props.className}
             >
-                {/* <div>{props.children}</div>
-                <Blurred>{props.children}</Blurred> */}
                 <Neon>{props.children}</Neon>
             </LinkContainer>
         </NavItem>

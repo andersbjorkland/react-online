@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import LightsContext from "../Hooks/LightsContext";
+import { motion } from "framer-motion";
 
 const NeonContainer = styled.div`
-    /* color: white; */
     display: flex;
     position: relative;
     text-decoration: none;
@@ -15,10 +15,10 @@ const NeonContainer = styled.div`
 
 `;
 
-const Blurred = styled.div`
+const Blurred = styled(motion.div)`
     filter: blur(4px);
+    opacity: 1;
     position: absolute;
-    
 `;
 
 const Neon = ({active = true, ...props}) => {
@@ -27,7 +27,7 @@ const Neon = ({active = true, ...props}) => {
     return (
         <NeonContainer className={props.className ?? false}>
             <div>{props.children}</div>
-            {context.neonActivated && active  ? <Blurred>{props.children}</Blurred> : null}
+            {context.neonActivated && active  ? <Blurred>{props.children}</Blurred> : <Blurred animate={{ filter: "blur(8px)", opacity: 0}}>{props.children}</Blurred>}
         </NeonContainer>
     );
 }

@@ -1,7 +1,8 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import timedClickHandler from "../utilities/timedClickHandler";
 
-const StyledButton = styled.button`
+const StyledButton = styled(motion.button)`
     background: none;
     border: none;
     font-weight: inherit;
