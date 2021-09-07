@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
 import BareButton from "../Components/BareButton";
-import Card, { contentObject } from "../Components/Card";
+import Card from "../Components/Card";
 import HeadingContainer from "../Components/HeadingContainer";
 import Pagination from "../Components/Pagination";
 import ColumnContainer from "../Layout/ColumnContainer";
@@ -38,11 +38,6 @@ const Showcases = (props) => {
         </BareButton>)
     });
 
-
-    const pageTurn = (page) => {
-        setCard(<Card content={results[page-1]} />);
-    }
-
     useEffect( () => {
         switch (currentCategory) {
             case "design":
@@ -56,7 +51,7 @@ const Showcases = (props) => {
     }, [currentCategory])
 
     useEffect( () => {
-        pageTurn(page);  
+        setCard(<Card content={results[page-1]} />);
     }, [page, results]);
     
     
@@ -72,7 +67,7 @@ const Showcases = (props) => {
                     </FlexContainer>
                     <FlexContainer className="mt-2">
                         <ColumnContainer>
-                            <Pagination numberOfPages={featured.length} setPage={setPage} >
+                            <Pagination numberOfPages={featured.length} setPage={setPage} currentPage={page} >
                                 {card}
                             </Pagination>
                         </ColumnContainer>

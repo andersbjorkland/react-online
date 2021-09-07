@@ -1,8 +1,13 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Neon from "../Layout/Neon";
 import BareButton from "./BareButton";
-import triangle from "../assets/triangle.svg";
+// import triangle from "../assets/triangle.svg";
+
+const triangle = 
+<svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0.749998 1.00481L12 7.5L0.749997 13.9952L0.749998 1.00481Z" stroke="#FECDFC"/>
+</svg>
+;
 
 const Wrapper = styled.div`
     font-weight: lighter;
@@ -16,6 +21,13 @@ const ControlContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+
+    .inactive {
+        * {
+            color: #2E2E2E;
+            stroke: var(--inactive);
+        }
+    }
 `;
 
 const pageNumberButton = (number, callback, currentPage = 1) => (
@@ -28,7 +40,7 @@ const pageNumberButton = (number, callback, currentPage = 1) => (
     </BareButton>
 );
 
-const StyledIterationIcon = styled.img`
+const IterationIconContainer = styled.div`
 
     position: relative;
     bottom: -0.1rem;
@@ -38,13 +50,11 @@ const StyledIterationIcon = styled.img`
     }
 `;
 
-const Pagination = ({numberOfPages, setPage, ...props}) => {
+const Pagination = ({numberOfPages, setPage, currentPage, ...props}) => {
 
-    const [currentPage, setCurrentPage] = useState(1);
 
     const updateCurrentPage = (number) => {
         if (number >= 1 && number <= numberOfPages) {
-            setCurrentPage(number);
             setPage(number);
         }
     }
@@ -74,14 +84,14 @@ const Pagination = ({numberOfPages, setPage, ...props}) => {
     }
 
     const nextBtn = (
-        <BareButton callback={() => updateCurrentPage(currentPage + 1)}>
-            <Neon className="pink"><StyledIterationIcon src={triangle} alt="" /></Neon>
+        <BareButton className={currentPage < numberOfPages ? false : "inactive"} callback={() => updateCurrentPage(currentPage + 1)}>
+            <IterationIconContainer><Neon>{triangle}</Neon></IterationIconContainer>
         </BareButton>
     );
 
     const prevBtn = (
-        <BareButton callback={() => updateCurrentPage(currentPage - 1)}>
-            <Neon className="pink"><StyledIterationIcon className="previous" src={triangle} alt="" /></Neon>
+        <BareButton className={currentPage > 1 ? false : "inactive"} callback={() => updateCurrentPage(currentPage - 1)}>
+            <IterationIconContainer className="previous"><Neon active={currentPage > 1}>{triangle}</Neon></IterationIconContainer>
         </BareButton>
     );
     

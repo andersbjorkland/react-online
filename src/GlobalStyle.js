@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
         // COLORS
         --obsidianDark: #141414;
         --obsidianDark08: rgba(20,20,20,0.9);
+        --darkGrey: #2E2E2E;
 
         --darkPurple: #4E044B;
         --lightPink: #FECDFC;
@@ -15,6 +16,8 @@ export const GlobalStyle = createGlobalStyle`
 
         --headingColors: var(--pinkWhite);
         --textColors: var(--lightPink);
+
+        --inactive: var(--darkGrey);
 
         --linearPurple: linear-gradient(90deg, #4E044B 14%, #3A0338 100%);
 
