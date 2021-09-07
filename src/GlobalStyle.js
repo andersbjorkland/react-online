@@ -112,6 +112,10 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     // MARGINS
+    .mt-2 {
+        margin-top: 2rem;
+    }
+    
     .mt-3 {
         margin-top: 3rem;
     }

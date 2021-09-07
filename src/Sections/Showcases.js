@@ -1,11 +1,21 @@
 import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
+import styled from "styled-components";
+import BareButton from "../Components/BareButton";
 import Card, { contentObject } from "../Components/Card";
 import HeadingContainer from "../Components/HeadingContainer";
 import Pagination from "../Components/Pagination";
 import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
+import Neon from "../Layout/Neon";
 import Section from "../Layout/Section";
+
+const categories = [
+    "latest",
+    "design",
+    "react",
+    "symfony"
+];
 
 const featured = [
     {
@@ -39,10 +49,29 @@ const featured = [
     }
 ];
 
+const Container = styled.div`
+    font-weight: lighter;
+`;
+
 const Showcases = (props) => {
 
     const [page, setPage] = useState(1);
     const [card, setCard] = useState(<Card content={featured[page-1]} />);
+    const [currentCategory, setCurrentCategory] = useState(categories[0]);
+
+    const categoryElements = categories.map(category => {
+        return (
+        <BareButton 
+            key={category} 
+            className={category === currentCategory ? "active" : false}
+            callback={() => {
+                    setCurrentCategory(category)
+                }
+            }
+        >
+            <Neon>{category}</Neon>
+        </BareButton>)
+    });
 
 
     const pageTurn = (page) => {
@@ -56,16 +85,23 @@ const Showcases = (props) => {
     
     return (
         <Section id="showcases">
-            <HeadingContainer>
-                <h2>showcases</h2>
-            </HeadingContainer>
-            <FlexContainer className="mt-4">
+            <Container>
+                <HeadingContainer>
+                    <h2>showcases</h2>
+                </HeadingContainer>
                 <ColumnContainer>
-                    <Pagination numberOfPages={featured.length} setPage={setPage} >
-                        {card}
-                    </Pagination>
+                    <FlexContainer className="mt-2 pink">
+                        {categoryElements}
+                    </FlexContainer>
+                    <FlexContainer className="mt-2">
+                        <ColumnContainer>
+                            <Pagination numberOfPages={featured.length} setPage={setPage} >
+                                {card}
+                            </Pagination>
+                        </ColumnContainer>
+                    </FlexContainer>
                 </ColumnContainer>
-            </FlexContainer>
+            </Container>
         </Section>
     );
 }

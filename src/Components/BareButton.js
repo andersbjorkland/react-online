@@ -6,6 +6,12 @@ const StyledButton = styled.button`
     border: none;
     font-weight: inherit;
     font-family: 'Roboto', sans-serif;
+    color: inherit;
+    letter-spacing: 0.25rem;
+
+    &.active {
+        font-weight: bold;
+    }
 `;
 
 const BareButton = ({callback, ...props}) => (
