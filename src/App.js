@@ -5,6 +5,7 @@ import { lightsContext } from './configuration/context';
 import { useState } from 'react';
 import Home from './Sections/Home';
 import Showcases from './Sections/Showcases';
+import Articles from './Sections/Articles';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Header />
         <Home />
         <Showcases />
+        <Articles />
       </div>
     </LightsContext.Provider>
   );
