@@ -67,7 +67,7 @@ const Showcases = (props) => {
                     </FlexContainer>
                     <FlexContainer className="mt-2">
                         <ColumnContainer>
-                            <Pagination numberOfPages={results.length} setPage={setPage} currentPage={page} >
+                            <Pagination numberOfPages={results.length} setPage={setPage} currentPage={page} color="pink">
                                 {card}
                             </Pagination>
                         </ColumnContainer>

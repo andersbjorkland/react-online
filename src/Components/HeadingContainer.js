@@ -49,6 +49,10 @@ const SolidBox = styled.div`
     background: var(--linearPurple);
     left: -0.5rem;
     top: -0.5rem;
+
+    &.blue {
+        background: var(--linearBlue);
+    }
     
     z-index: -1;
 `;
@@ -59,6 +63,9 @@ width: 100%;
 height: 100%;
 padding: 0.1rem;
 background: var(--linearPurple);
+&.blue {
+    background: var(--linearBlue);
+}
 
 z-index: -1;
 
@@ -90,20 +97,20 @@ const StackedBoxes = styled.div`
     }
 `;
 
-const LinearOutline = () => (
+const LinearOutline = (props) => (
     <StackedBoxes>
-        <OuterBox >
+        <OuterBox className={props.className ?? false} >
             <InnerBox />
         </OuterBox>
     </StackedBoxes>
 );
 
-const HeadingBackground = () => {
+const HeadingBackground = (props) => {
 
     return (
         <>
-            <LinearOutline />
-            <SolidBox />
+            <LinearOutline className={props.className ?? false} />
+            <SolidBox className={props.className ?? false} />
         </>
     );
 
@@ -112,7 +119,7 @@ const HeadingBackground = () => {
 
 const HeadingContainer = (props) => (
     <HeadingStyle>
-        <HeadingBackground />
+        <HeadingBackground className={props.className ?? false} />
         {props.children}
     </HeadingStyle>
 )

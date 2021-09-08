@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
         --inactive: var(--darkGrey);
 
         --linearPurple: linear-gradient(90deg, #4E044B 14%, #3A0338 100%);
+        --linearBlue: linear-gradient(90deg, #04264E 14%, #031D3A 100%);
 
         // INDICES
         --headerIndex: 3;
@@ -66,6 +67,7 @@ export const GlobalStyle = createGlobalStyle`
     p {
         color: var(--lightPink);
         font-family: 'Lato', sans-serif;
+        line-height: 1.4rem;
     }
 
     a {

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
 import BareButton from "../Components/BareButton";
-import Card from "../Components/Card";
 import HeadingContainer from "../Components/HeadingContainer";
 import Pagination from "../Components/Pagination";
 import ColumnContainer from "../Layout/ColumnContainer";
@@ -10,6 +9,7 @@ import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
 import Section from "../Layout/Section";
 import { categories, latest, devops } from "../dev/data/articles";
+import ArticleCard from "../Components/ArticleCard";
 
 
 const Container = styled.div`
@@ -20,7 +20,7 @@ const Articles = (props) => {
 
     const [page, setPage] = useState(1);
     const [results, setResults] = useState(latest);
-    const [card, setCard] = useState(<Card content={results[page-1]} />);
+    const [card, setCard] = useState(<ArticleCard article={results[page-1]} />);
     const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
     const categoryElements = categories.map(category => {
@@ -30,6 +30,7 @@ const Articles = (props) => {
             className={category === currentCategory ? "active" : false}
             callback={() => {
                     setCurrentCategory(category);
+                    setResults(category === "devops" ? devops : latest);
                     setPage(1);
                 }
             }
@@ -38,36 +39,36 @@ const Articles = (props) => {
         </BareButton>)
     });
 
-    useEffect( () => {
-        switch (currentCategory) {
-            case "devops":
-                setResults(devops);
-                break;
+    // useEffect( () => {
+    //     switch (currentCategory) {
+    //         case "devops":
+    //             setResults(devops);
+    //             break;
 
-            default:
-                setResults(latest);
-                break;
-        }
-    }, [currentCategory])
+    //         default:
+    //             setResults(latest);
+    //             break;
+    //     }
+    // }, [currentCategory])
 
     useEffect( () => {
-        setCard(<Card content={results[page-1]} />);
+        setCard(<ArticleCard article={results[page-1]} />);
     }, [page, results]);
     
     
     return (
-        <Section id="showcases">
+        <Section id="showcases" className="text-blue">
             <Container>
-                <HeadingContainer>
+                <HeadingContainer className="blue">
                     <h2>articles</h2>
                 </HeadingContainer>
                 <ColumnContainer>
-                    <FlexContainer className="mt-2 pink">
+                    <FlexContainer className="mt-2 blue">
                         {categoryElements}
                     </FlexContainer>
-                    <FlexContainer className="mt-2">
+                    <FlexContainer className="mt-2 blue">
                         <ColumnContainer>
-                            <Pagination numberOfPages={results.length} setPage={setPage} currentPage={page} >
+                            <Pagination numberOfPages={results.length} setPage={setPage} currentPage={page} color="blue">
                                 {card}
                             </Pagination>
                         </ColumnContainer>

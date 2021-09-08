@@ -1,10 +1,20 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import { colorOptions } from "../Layout/colorOptions";
 import Neon from "../Layout/Neon";
 import BareButton from "./BareButton";
 // import triangle from "../assets/triangle.svg";
 
-const triangle = (active) => (
+const getColor = (color) => {
+    if (Object.keys(colorOptions).includes(color)) {
+        return colorOptions[color];
+    } else {
+        console.log("Doesn't contain it: " + color);
+        return "#FECDFC";
+    }
+}
+
+const triangle = (active, color) => (
     <svg 
         width="13" 
         height="15" 
@@ -15,9 +25,8 @@ const triangle = (active) => (
  
         <motion.path 
             d="M0.749998 1.00481L12 7.5L0.749997 13.9952L0.749998 1.00481Z" 
-            stroke="white"
             animate={{
-                stroke: active ? "#FECDFC": "#2E2E2E",
+                stroke: active ? getColor(color) : "#2E2E2E",
                 transition: {duration: 0.3}
             }}
         />
@@ -38,13 +47,13 @@ const ControlContainer = styled.div`
     margin-bottom: 1rem;
 `;
 
-const pageNumberButton = (number, callback, currentPage = 1) => (
+const pageNumberButton = (number, callback, currentPage = 1, color = "pink") => (
     <BareButton 
         className={number === currentPage ? "active" : false} 
         key={number} 
         callback={() => callback(number)}
     >
-        <Neon className="pink">{number}</Neon>
+        <Neon className={color}>{number}</Neon>
     </BareButton>
 );
 
@@ -87,12 +96,12 @@ const Pagination = ({numberOfPages, setPage, currentPage, ...props}) => {
 
 
     for (let i = startIteration; i < stopIteration; i++) {
-        pagesBtn[i] = pageNumberButton(i+1, updateCurrentPage, currentPage);
+        pagesBtn[i] = pageNumberButton(i+1, updateCurrentPage, currentPage, props.color ?? "pink");
     }
 
     const nextBtn = (
         <BareButton className={currentPage < numberOfPages ? false : "inactive"} callback={() => updateCurrentPage(currentPage + 1)}>
-            <IterationIconContainer><Neon active={currentPage < numberOfPages}>{triangle(currentPage < numberOfPages)}</Neon></IterationIconContainer>
+            <IterationIconContainer><Neon active={currentPage < numberOfPages}>{triangle(currentPage < numberOfPages, props.color ?? "pink")}</Neon></IterationIconContainer>
         </BareButton>
     );
 
@@ -101,7 +110,7 @@ const Pagination = ({numberOfPages, setPage, currentPage, ...props}) => {
             className={currentPage > 1 ? false : "inactive"} 
             callback={() => updateCurrentPage(currentPage - 1)}
         >
-            <IterationIconContainer className="previous"><Neon active={currentPage > 1}>{triangle(currentPage > 1)}</Neon></IterationIconContainer>
+            <IterationIconContainer className="previous"><Neon active={currentPage > 1}>{triangle(currentPage > 1, props.color ?? "pink")}</Neon></IterationIconContainer>
         </BareButton>
     );
     
