@@ -1,6 +1,7 @@
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
+import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
 import Image from "./Image";
 
@@ -8,13 +9,19 @@ const Container = styled.article`
     display: flex;
     flex-direction: column;
     width: 100%;
+    color: var(--light-blue);
 
-    h4, p {
+
+    h4, p, a {
         color: var(--light-blue);
     }
 
-    p {
-        color: white;
+    a {
+        display: flex;
+        gap: 0.5rem;
+        text-decoration: none;
+        font-weight: normal;
+        font-size: 0.8rem;
     }
 
     font-size: 1rem;
@@ -63,7 +70,7 @@ const ArticleCard = ({article, ...props}) => {
             <MetaContainer><span>by {article?.meta?.author} </span><time> {article?.meta?.date}</time></MetaContainer>
             <p>{article?.summary}</p>
             {tags ? <FlexP>{tags}</FlexP> : false} 
-            <FlexP className="right">read more on {getDomainFromUrl(article.url)} <a href={article.url}><Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon></a></FlexP>
+            <FlexContainer className="baseline right"><a href={article.url}>read more on {getDomainFromUrl(article.url)} <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon></a></FlexContainer>
         </Container>
     );
 }
