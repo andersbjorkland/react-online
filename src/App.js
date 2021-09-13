@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Home from './Sections/Home';
 import Showcases from './Sections/Showcases';
 import Articles from './Sections/Articles';
+import About from './Sections/About';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Home />
         <Showcases />
         <Articles />
+        <About />
       </div>
     </LightsContext.Provider>
   );

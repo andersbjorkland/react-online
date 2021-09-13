@@ -54,6 +54,11 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: lighter;
         font-size: 1.4rem;
         margin: 2rem 0 0 0;
+
+        .md-text {
+            font-size: 1.1rem;
+            font-weight: lighter;
+        }
     }
 
     h4, h5, h6 {
@@ -131,5 +136,9 @@ export const GlobalStyle = createGlobalStyle`
 
     .mb-2 {
         margin-bottom: 2rem;
+    }
+
+    .ml-auto {
+        margin-left: auto;
     }
 `;
