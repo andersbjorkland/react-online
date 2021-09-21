@@ -75,6 +75,20 @@ export const GlobalStyle = createGlobalStyle`
         line-height: 1.4rem;
     }
 
+    label {
+        color: var(--lightPink);
+        font-weight: 600;
+        font-family: 'Lato', sans-serif;
+        line-height: 1.4rem;
+    }
+
+    input, textarea {
+        color: var(--pinkWhite);
+        background-color: var(--obsidianDark);
+        border: solid var(--lightPink) 1px;
+        padding: 0.25rem;
+    }
+
     a {
         font-family: 'Lato', sans-serif;
     }

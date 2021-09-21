@@ -7,6 +7,7 @@ import Home from './Sections/Home';
 import Showcases from './Sections/Showcases';
 import Articles from './Sections/Articles';
 import About from './Sections/About';
+import Contact from './Sections/Contact';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Showcases />
         <Articles />
         <About />
+        <Contact />
       </div>
     </LightsContext.Provider>
   );

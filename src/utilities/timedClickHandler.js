@@ -1,4 +1,4 @@
-import { interactions } from "../configuration/interactions";
+import { interactions } from "../configuration/config";
 
 const INTERACTION_TIMEOUT = interactions.buttonTimeout;
 

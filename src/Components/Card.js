@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
-import {interactions} from "../configuration/interactions";
+import {interactions} from "../configuration/config";
 import Neon from "../Layout/Neon";
 import timedClickHandler from "../utilities/timedClickHandler";
 import Image from "./Image";

@@ -10,6 +10,9 @@ const StyledButton = styled(motion.button)`
     color: inherit;
     letter-spacing: 0.25rem;
 
+    display: flex;
+    gap: 0.25rem;
+
     &.active {
         font-weight: bold;
     }
