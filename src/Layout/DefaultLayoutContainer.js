@@ -4,6 +4,7 @@ import InnerContainer from './InnerContainer';
 
 const StyledDiv = styled.div`
     width: 100%;
+    min-height: inherit;
     padding: 0;
     z-index: 4;
 `

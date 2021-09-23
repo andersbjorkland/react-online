@@ -32,9 +32,13 @@ export const GlobalStyle = createGlobalStyle`
 
 
         // DIMENSIONS
-        --maxWidth: 1200px;
+        --maxWidth: 75rem;
 
         scroll-behavior: smooth;
+
+        @media screen and (min-width: 1600px) {
+            font-size: 18px;
+        }
         
     }
 
@@ -157,6 +161,10 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     // MARGINS
+    .mt-0 {
+        margin-top: 0;
+    }
+
     .mt-2 {
         margin-top: 2rem;
     }
@@ -173,6 +181,10 @@ export const GlobalStyle = createGlobalStyle`
         margin-bottom: 2rem;
     }
 
+    .mt-auto {
+        margin-top: auto;
+    }
+
     .ml-auto {
         margin-left: auto;
     }
@@ -186,4 +198,23 @@ export const GlobalStyle = createGlobalStyle`
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
+
+    // HEIGHTS
+    .h-full {
+        min-height: 100vh;
+    }
+
+
+
+    .hidden {
+        display: none;
+    }
+
+    @media screen and (max-width: 600px) {
+        .sm-hidden {
+            display: none;
+        }
+    }
+
+    
 `;

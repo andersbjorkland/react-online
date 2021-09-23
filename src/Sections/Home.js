@@ -1,11 +1,33 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
+import styled from "styled-components";
+import ArticleCard from "../Components/ArticleCard";
 import Card, { contentObject, TYPES } from "../Components/Card";
 import HeadingContainer from "../Components/HeadingContainer";
 import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
 import { RefSection } from "../Layout/Section";
 
+const HeadingP = styled.p`
+    margin: 0;
+    padding-top: 0.5rem;
+    color: var(--pinkWhite);
+`;
+
+const Heading = styled.h1`
+    max-width: 700px;
+
+    @media screen and (min-width: 600px) {
+        font-size: 3rem;
+    }
+
+    @media screen and (max-width: 600px) {
+        
+    }
+`;
+
 const Home = forwardRef((props, ref) => {
+    const [minimizeArticle, setMinimizeArticle] = useState(true);
+
     const article = {
         ...contentObject,
         type: TYPES.article,
@@ -14,7 +36,11 @@ const Home = forwardRef((props, ref) => {
             date: "March 23 2021",
             author: "Anders"
         },
-        url: "#",
+        img: {
+            src: "https://mdle.andersbjorkland.online/mdle--og.png",
+            alt: "retro Markdown Live Editor - write markdown in an Amiga 500-inspired environment."
+        },
+        url: "dev.to/sdfjksldjf",
         summary: "If you have many different projects, jumping between them, coding and pushing to production may be tedious. I know it is..."
     };
 
@@ -36,19 +62,19 @@ const Home = forwardRef((props, ref) => {
 
     return (
         <RefSection id="home" ref={ref}>
-            <HeadingContainer>
-                <h1><span className="md-text">I design, develop and deploy</span><br /> modern web solutions</h1>
-            </HeadingContainer>
-            <FlexContainer>
-                <ColumnContainer>
-                    <h3 className="blue">latest article</h3>
-                    <Card 
-                        content={{...article}}
-                        minimize={true}
-                    />
+            <HeadingP>I'm Anders Björkland</HeadingP>
+            <Heading className="mt-0">I design, develop and deploy modern web solutions</Heading>
+            <FlexContainer justify="space-around" className="mt-4">
+                <ColumnContainer className="blue">
+                    <h3>latest article</h3>
+                    <ArticleCard article={{...article}} minimize={true} />
                 </ColumnContainer>
                 <ColumnContainer>
                     <h3 className="pink">featured work</h3>
+                    <Card content={{...featured}} />
+                </ColumnContainer>
+                <ColumnContainer className="sm-hidden">
+                    <h3 className="pink">latest work</h3>
                     <Card content={{...featured}} />
                 </ColumnContainer>
             </FlexContainer>

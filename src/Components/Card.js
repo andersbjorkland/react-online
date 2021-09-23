@@ -181,7 +181,7 @@ const Card = ({
         minimize = false 
     }) => {
 
-    const image = content.img ? <Image className="slim" src={content.img.src} alt={content.img.alt ?? ""} />: false;
+    const image = content.img ? <Image className={minimize ? "hidden" : "slim"} src={content.img.src} alt={content.img.alt ?? ""} />: false;
     
 
     return (

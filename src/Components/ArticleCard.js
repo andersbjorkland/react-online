@@ -6,14 +6,20 @@ import Neon from "../Layout/Neon";
 import Image from "./Image";
 
 const Container = styled.article`
+    width: 100%;
+    max-width: 22rem;
+
     display: flex;
     flex-direction: column;
-    width: 100%;
     color: var(--light-blue);
 
 
     h4, p, a {
         color: var(--light-blue);
+    }
+
+    p {
+        font-weight: lighter;
     }
 
     a {
@@ -59,8 +65,8 @@ const getDomainFromUrl = (url) => {
 }
 
 
-const ArticleCard = ({article, ...props}) => {
-    const image = article.img ? <Image className="slim" src={article.img.src} alt={article.img.alt ?? ""} />: false;
+const ArticleCard = ({article, minimize = false, ...props}) => {
+    const image = article.img ? <Image className={minimize ? "slim sm-hidden": "slim"} src={article.img.src} alt={article.img.alt ?? ""} />: false;
     const tags = article.tags ? article.tags.map(tag => (<span key={tag}>{tag}</span>)) : false;
 
     return (

@@ -4,7 +4,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 100%;
 `;
 
 const ColumnContainer = (props) => {

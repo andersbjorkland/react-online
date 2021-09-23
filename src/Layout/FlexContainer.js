@@ -5,6 +5,8 @@ const Container = styled.div`
     flex-wrap: wrap;
     gap: ${props => props.gap ? props.gap + "rem" : "0.5rem"};
 
+    justify-content: ${props => props.justify ?? false};
+
     &.right {
         justify-content: flex-end;
     }
@@ -17,7 +19,7 @@ const Container = styled.div`
 const FlexContainer = (props) => {
     
     return (
-        <Container gap={props.gap ?? false} className={props.className ?? false}>
+        <Container gap={props.gap ?? false} justify={props.justify ?? false} className={props.className ?? false}>
             {props.children}
         </Container>
     );
