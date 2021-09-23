@@ -5,7 +5,7 @@ const INTERACTION_TIMEOUT = interactions.buttonTimeout;
 const timedWrapper = () => {
     let isClicked = false;
 
-    return (callback) => {
+    return (callback, timeout = INTERACTION_TIMEOUT) => {
         
         if (!isClicked) {
             isClicked = true;
@@ -13,7 +13,7 @@ const timedWrapper = () => {
 
             setTimeout(() => {
                 isClicked = false;
-            }, INTERACTION_TIMEOUT);
+            }, timeout);
         }
         
 

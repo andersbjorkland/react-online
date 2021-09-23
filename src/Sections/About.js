@@ -1,8 +1,9 @@
+import { forwardRef } from "react";
 import styled from "styled-components";
 import HeadingContainer from "../Components/HeadingContainer";
 import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
-import Section from "../Layout/Section";
+import { RefSection } from "../Layout/Section";
 
 
 const Container = styled.div`
@@ -30,10 +31,10 @@ const InfoContainer = styled.div`
     max-width: 25rem;
 `;
 
-const About = (props) => {    
+const About = forwardRef((props, ref) => {    
     
     return (
-        <Section id="about">
+        <RefSection ref={ref} id="about">
             <Container>
                 <HeadingContainer>
                     <h2>about</h2>
@@ -85,8 +86,8 @@ const About = (props) => {
                     </ColumnContainer>
                 </FlexContainer>
             </Container>
-        </Section>
+        </RefSection>
     );
-}
+});
 
 export default About;

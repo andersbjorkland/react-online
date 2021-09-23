@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
 import BareButton from "../Components/BareButton";
@@ -8,7 +8,7 @@ import Pagination from "../Components/Pagination";
 import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
-import Section from "../Layout/Section";
+import { RefSection } from "../Layout/Section";
 import { categories, featured, design } from "../dev/data/showcases";
 
 
@@ -16,7 +16,7 @@ const Container = styled.div`
     font-weight: lighter;
 `;
 
-const Showcases = (props) => {
+const Showcases = forwardRef((props, ref) => {
 
     const [page, setPage] = useState(1);
     const [results, setResults] = useState(featured);
@@ -56,7 +56,7 @@ const Showcases = (props) => {
     
     
     return (
-        <Section id="showcases">
+        <RefSection id="showcases" ref={ref}>
             <Container>
                 <HeadingContainer>
                     <h2>showcases</h2>
@@ -74,8 +74,8 @@ const Showcases = (props) => {
                     </FlexContainer>
                 </ColumnContainer>
             </Container>
-        </Section>
+        </RefSection>
     );
-}
+});
 
 export default Showcases;

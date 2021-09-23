@@ -34,6 +34,7 @@ export const GlobalStyle = createGlobalStyle`
         // DIMENSIONS
         --maxWidth: 1200px;
 
+        scroll-behavior: smooth;
         
     }
 
@@ -102,6 +103,18 @@ export const GlobalStyle = createGlobalStyle`
         background-color: var(--obsidianDark);
     }
 
+    .app-wrapper {
+        position: relative;
+    }
+
+    .sticky {
+        position: sticky;
+
+        &--top {
+            top: 0;
+        }
+    }
+
     .linear--purple {
         background: #4E044B;
         background: linear-gradient(90deg, #4E044B 14%, #3A0338 100%);
@@ -122,6 +135,14 @@ export const GlobalStyle = createGlobalStyle`
 
     .dark-bg {
         background-color: var(--obsidianDark);
+    }
+
+    .dark08-bg {
+        background-color: var(--obsidianDark08);
+    }
+
+    .white-bg {
+        background-color: white;
     }
 
     .white {
@@ -154,5 +175,15 @@ export const GlobalStyle = createGlobalStyle`
 
     .ml-auto {
         margin-left: auto;
+    }
+
+    // PADDINGS
+    .pt-1 {
+        padding-top: 1rem;
+    }
+
+    .py-1 {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 `;

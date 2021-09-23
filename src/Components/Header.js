@@ -91,14 +91,26 @@ const BurgerToggler = ({toggled, setToggled}) => {
 const Header = () => {
     const [toggled, setToggled] = useState(false);
 
+    const handleClick = (event) => {
+
+        const closeMenu = () => {
+            if (toggled){
+                setToggled(false);
+            }
+        }
+
+        timedClickHandler(closeMenu);
+        
+    }
+
     return (
-        <DefaultLayoutContainer>
-            <HeaderContainer>
+        <DefaultLayoutContainer className="sticky sticky--top py-1 dark08-bg">
+            <HeaderContainer onClick={handleClick}>
                 <div className="first-row">
                     <LogoImg src={logo} alt="Site Logo" />
                     <BurgerToggler toggled={toggled} setToggled={setToggled} />
                 </div>
-                <nav><NavBar toggled={toggled} /></nav>
+                <nav><NavBar toggled={toggled} setToggled={setToggled} /></nav>
             </HeaderContainer>
         </DefaultLayoutContainer>
     );

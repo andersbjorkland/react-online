@@ -1,7 +1,8 @@
+import { forwardRef } from "react";
 import styled from "styled-components";
 import ContactForm from "../Components/ContactForm";
 import HeadingContainer from "../Components/HeadingContainer";
-import Section from "../Layout/Section";
+import { RefSection } from "../Layout/Section";
 
 
 const Container = styled.div`
@@ -21,18 +22,18 @@ const Container = styled.div`
     }
 `;
 
-const Contact = (props) => {    
+const Contact = forwardRef((props, ref) => {    
     
     return (
-        <Section id="contact">
+        <RefSection ref={ref} id="contact">
             <Container>
                 <HeadingContainer>
                     <h2>contact</h2>
                 </HeadingContainer>
                 <ContactForm />
             </Container>
-        </Section>
+        </RefSection>
     );
-}
+});
 
 export default Contact;

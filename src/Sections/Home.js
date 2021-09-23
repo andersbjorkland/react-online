@@ -1,10 +1,11 @@
+import { forwardRef } from "react";
 import Card, { contentObject, TYPES } from "../Components/Card";
 import HeadingContainer from "../Components/HeadingContainer";
 import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
-import Section from "../Layout/Section";
+import { RefSection } from "../Layout/Section";
 
-const Home = (props) => {
+const Home = forwardRef((props, ref) => {
     const article = {
         ...contentObject,
         type: TYPES.article,
@@ -34,7 +35,7 @@ const Home = (props) => {
     };
 
     return (
-        <Section id="home">
+        <RefSection id="home" ref={ref}>
             <HeadingContainer>
                 <h1><span className="md-text">I design, develop and deploy</span><br /> modern web solutions</h1>
             </HeadingContainer>
@@ -51,8 +52,8 @@ const Home = (props) => {
                     <Card content={{...featured}} />
                 </ColumnContainer>
             </FlexContainer>
-        </Section>
+        </RefSection>
     );
-}
+});
 
 export default Home;

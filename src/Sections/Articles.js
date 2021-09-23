@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import styled from "styled-components";
 import BareButton from "../Components/BareButton";
@@ -7,7 +7,7 @@ import Pagination from "../Components/Pagination";
 import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
-import Section from "../Layout/Section";
+import { RefSection } from "../Layout/Section";
 import { categories, latest, devops } from "../dev/data/articles";
 import ArticleCard from "../Components/ArticleCard";
 
@@ -16,7 +16,7 @@ const Container = styled.div`
     font-weight: lighter;
 `;
 
-const Articles = (props) => {
+const Articles = forwardRef((props, ref) => {
 
     const [page, setPage] = useState(1);
     const [results, setResults] = useState(latest);
@@ -39,25 +39,13 @@ const Articles = (props) => {
         </BareButton>)
     });
 
-    // useEffect( () => {
-    //     switch (currentCategory) {
-    //         case "devops":
-    //             setResults(devops);
-    //             break;
-
-    //         default:
-    //             setResults(latest);
-    //             break;
-    //     }
-    // }, [currentCategory])
-
     useEffect( () => {
         setCard(<ArticleCard article={results[page-1]} />);
     }, [page, results]);
     
     
     return (
-        <Section id="showcases" className="text-blue">
+        <RefSection ref={ref} id="articles" className="text-blue">
             <Container>
                 <HeadingContainer className="blue">
                     <h2>articles</h2>
@@ -75,8 +63,8 @@ const Articles = (props) => {
                     </FlexContainer>
                 </ColumnContainer>
             </Container>
-        </Section>
+        </RefSection>
     );
-}
+});
 
 export default Articles;
