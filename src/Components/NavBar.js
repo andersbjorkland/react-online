@@ -1,12 +1,9 @@
-import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {motion} from "framer-motion";
 import { useContext } from "react";
 import styled from "styled-components";
-import LightsContext from "../Hooks/LightsContext";
 import ScrollContext from "../Hooks/ScrollContext";
 import Neon from "../Layout/Neon";
-import TogglerButton from "./TogglerButton";
+import LightToggler from "./LightToggler";
 
 const LinkContainer = styled(motion.a)`
     font-size: 2rem;
@@ -40,7 +37,7 @@ const NavLink = (props) => {
         return (
             <NavItem
                 animate={{  opacity: 1}}
-                transition={{ delay: (props.order) * 0.095, from: 0, duration: 0.3}}
+                transition={{ delay: (props.order) * 0.095, duration: 0.3}}
     
                 whileHover={{
                     color: "var(--lightPink)"
@@ -112,7 +109,6 @@ const NavBarContainer = styled.div`
 `;
 
 const NavBar = ({toggled, setToggled}) => {
-    const context = useContext(LightsContext);
     const scrollContext = useContext(ScrollContext);
 
 
@@ -132,13 +128,7 @@ const NavBar = ({toggled, setToggled}) => {
                         color: "var(--lightPink)"
                     }}
                 >
-                    <LightsContext.Consumer>
-                        {({toggleLight}) => (
-                            <TogglerButton callback={toggleLight} toggleState={!context.neonActivated}>
-                                <FontAwesomeIcon className={context.neonActivated ? "white08" : "dark"} icon={faLightbulb} />
-                            </TogglerButton>
-                        )}
-                    </LightsContext.Consumer>
+                    <LightToggler />
                 </NavItem>
             </div>
         </NavBarContainer>

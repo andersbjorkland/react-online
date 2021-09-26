@@ -35,7 +35,7 @@ const StyledButton = styled.button`
     }
 
     &.active {
-        transform: translate3d(2px, -2px, -4px);
+        transform: translate3d(0px, -2px, -4px);
         box-shadow: 0px 0px 1px rgba(0,0,0,0.6);
 
         &::before {
