@@ -16,6 +16,15 @@ const HeaderContainer = styled.header`
         display: flex;
         z-index: var(--headerIndex);
     }
+
+    @media screen and (min-width: 800px) {
+        flex-direction: row;
+        align-items: center;
+
+        nav {
+            margin-left: auto;
+        }
+    }
 `;
 
 const LogoImg = styled.img`
@@ -49,6 +58,10 @@ const BurgerTogglerContainer = styled.div`
         line:nth-child(4) {
             transform: translateX(-4.5px) translateY(2px) rotate(-45deg)
         }
+    }
+
+    @media screen and (min-width: 800px) {
+        display: none;
     }
     
 `;

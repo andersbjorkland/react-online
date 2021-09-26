@@ -1,8 +1,7 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef } from "react";
 import styled from "styled-components";
 import ArticleCard from "../Components/ArticleCard";
 import Card, { contentObject, TYPES } from "../Components/Card";
-import HeadingContainer from "../Components/HeadingContainer";
 import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
 import { RefSection } from "../Layout/Section";
@@ -19,14 +18,9 @@ const Heading = styled.h1`
     @media screen and (min-width: 600px) {
         font-size: 3rem;
     }
-
-    @media screen and (max-width: 600px) {
-        
-    }
 `;
 
 const Home = forwardRef((props, ref) => {
-    const [minimizeArticle, setMinimizeArticle] = useState(true);
 
     const article = {
         ...contentObject,

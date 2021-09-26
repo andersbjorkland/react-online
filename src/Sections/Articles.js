@@ -1,5 +1,4 @@
-import { forwardRef, useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import { forwardRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import BareButton from "../Components/BareButton";
 import HeadingContainer from "../Components/HeadingContainer";

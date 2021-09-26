@@ -1,5 +1,5 @@
 import { forwardRef, useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 import styled from "styled-components";
 import BareButton from "../Components/BareButton";
 import Card from "../Components/Card";
@@ -48,7 +48,7 @@ const Showcases = forwardRef((props, ref) => {
                 setResults(featured);
                 break;
         }
-    }, [currentCategory])
+    }, [currentCategory]);
 
     useEffect( () => {
         setCard(<Card content={results[page-1]} />);

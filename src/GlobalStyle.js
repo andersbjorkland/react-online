@@ -34,6 +34,9 @@ export const GlobalStyle = createGlobalStyle`
         // DIMENSIONS
         --maxWidth: 75rem;
 
+        // BREAKPOINTS
+        --mediumBreakpoint: 800px;
+
         scroll-behavior: smooth;
 
         @media screen and (min-width: 1600px) {
