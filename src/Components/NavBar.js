@@ -21,26 +21,30 @@ const LinkContainer = styled(motion.a)`
         font-weight: 400;
     }
 
+    &:hover {
+        color: inherit;
+    }
+
 `;
 
 
 const NavItem = styled(motion.div)`
-    opacity: 0.1;
-
-    @media screen and (min-width: 800px) {
-        opacity: 1;
+    &:hover {
+        color: var(--lightPink);
     }
 `;
 
-const NavLink = (props) => {
-    if (props.toggled) {
+const NavLink = ({toggled, ...props}) => {
+    if (toggled) {
         return (
             <NavItem
-                animate={{  opacity: 1}}
-                transition={{ delay: (props.order) * 0.095, duration: 0.3}}
-    
-                whileHover={{
-                    color: "var(--lightPink)"
+                className={props.className}
+                animate={{  opacity: [1, 0.1, 0, 1]}}
+                transition={{ 
+                    delay: (props.order) * 0.095, 
+                    duration: 0.3,
+                    times: [0, 0.1, 0.1, 0.8],
+                    from: 1,
                 }}
             >
                 <LinkContainer
@@ -104,11 +108,12 @@ const NavBarContainer = styled.div`
             width: fit-content;
 
             padding: 0;
+            margin: 0;
         }
     }
 `;
 
-const NavBar = ({toggled, setToggled}) => {
+const NavBar = ({toggled}) => {
     const scrollContext = useContext(ScrollContext);
 
 
@@ -121,6 +126,7 @@ const NavBar = ({toggled, setToggled}) => {
                 <NavLink toggled={toggled} order={4} href="#about" className={scrollContext.scrolledTo === "about" ? "active" : null}>about</NavLink>
                 <NavLink toggled={toggled} order={5} href="#contact" className={scrollContext.scrolledTo === "contact" ? "active" : null}>contact</NavLink>
                 <NavItem
+                    className="show-sm"
                     animate={{  opacity: 1}}
                     transition={{ delay: 6 * 0.095, from: 0, duration: 0.3}}
         

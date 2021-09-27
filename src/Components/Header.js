@@ -108,6 +108,7 @@ const Header = () => {
 
         const closeMenu = () => {
             if (toggled){
+                console.log("Closing menu!");
                 setToggled(false);
             }
         }
@@ -123,7 +124,7 @@ const Header = () => {
                     <LogoImg src={logo} alt="Site Logo" />
                     <BurgerToggler toggled={toggled} setToggled={setToggled} />
                 </div>
-                <nav><NavBar toggled={toggled} setToggled={setToggled} /></nav>
+                <nav><NavBar toggled={toggled} /></nav>
             </HeaderContainer>
         </DefaultLayoutContainer>
     );

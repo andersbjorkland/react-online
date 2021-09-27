@@ -219,5 +219,19 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
 
+    .opacity-01 {
+        opacity: 0.1;
+    }
+
+    @media screen and (min-width: 800px) {
+        .show-sm {
+            display: none;
+        }
+        .opacity-1--md {
+            opacity: 1;
+        }
+    }
+    
+
     
 `;
