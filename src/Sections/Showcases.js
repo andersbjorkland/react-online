@@ -56,7 +56,7 @@ const Showcases = forwardRef((props, ref) => {
     
     
     return (
-        <RefSection id="showcases" ref={ref}>
+        <RefSection id="showcases" ref={ref} className={props.className ?? false}>
             <Container>
                 <HeadingContainer>
                     <h2>showcases</h2>

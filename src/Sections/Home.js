@@ -55,10 +55,10 @@ const Home = forwardRef((props, ref) => {
     };
 
     return (
-        <RefSection id="home" ref={ref}>
+        <RefSection id="home" ref={ref} className={props.className ?? false}>
             <HeadingP>I'm Anders Björkland</HeadingP>
             <Heading className="mt-0">I design, develop and deploy modern web solutions</Heading>
-            <FlexContainer justify="space-around" className="mt-4">
+            <FlexContainer justify="space-around" className="mt-4 md--mt-8">
                 <ColumnContainer className="blue">
                     <h3>latest article</h3>
                     <ArticleCard article={{...article}} minimize={true} />

@@ -44,7 +44,7 @@ const Articles = forwardRef((props, ref) => {
     
     
     return (
-        <RefSection ref={ref} id="articles" className="text-blue">
+        <RefSection ref={ref} id="articles" className={props.className ? props.className + " text-blue" : false} >
             <Container>
                 <HeadingContainer className="blue">
                     <h2>articles</h2>

@@ -34,7 +34,7 @@ const InfoContainer = styled.div`
 const About = forwardRef((props, ref) => {    
     
     return (
-        <RefSection ref={ref} id="about">
+        <RefSection ref={ref} id="about" className={props.className ?? false}>
             <Container>
                 <HeadingContainer>
                     <h2>about</h2>
