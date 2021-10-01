@@ -4,3 +4,5 @@ export const lightsContext = {
 };
 
 export const scrollContext = {scrolledTo: "home"}
+
+export const resizeContext = {width: window.innerWidth}

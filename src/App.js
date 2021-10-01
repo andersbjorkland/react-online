@@ -1,7 +1,7 @@
 import { GlobalStyle } from './GlobalStyle';
 import Header from './Components/Header';
 import LightsContext from './Hooks/LightsContext';
-import { lightsContext, scrollContext } from './configuration/context';
+import { lightsContext, resizeContext, scrollContext } from './configuration/context';
 import { useEffect, useRef, useState } from 'react';
 import Home from './Sections/Home';
 import Showcases from './Sections/Showcases';
@@ -10,11 +10,13 @@ import About from './Sections/About';
 import Contact from './Sections/Contact';
 import ScrollContext from './Hooks/ScrollContext';
 import timedClickHandler from './utilities/timedClickHandler';
+import ResizeContext from './Hooks/ResizeContext';
 
 
 function App() {
 
   const [lightsState, setLightsState] = useState({...lightsContext});
+  const [resizeState, setResizeState] = useState({...resizeContext});
   const [scrollState, setScrollState] = useState({...scrollContext});
 
   const homeRef = useRef(null);
@@ -89,20 +91,32 @@ function App() {
       window.addEventListener('scroll', menuScrollUpdater);
   }, [scrollState]);
 
+  useEffect(() => {
+    const resizeHandler = () => {
+      timedClickHandler(() => {
+          setResizeState({width: window.innerWidth});
+      });
+    }
+
+    window.addEventListener('resize', resizeHandler);    
+  }, []);
+
   return (
-    <ScrollContext.Provider value={{...scrollState}}>
-      <LightsContext.Provider value={{...lightsState, toggleLight: toggleLight}}>
-        <div className="app-wrapper">
-          <GlobalStyle />
-          <Header />
-          <Home ref={homeRef} />
-          <Showcases ref={showcasesRef} />
-          <Articles ref={articlesRef} />
-          <About ref={aboutRef} />
-          <Contact ref={contactRef} />
-        </div>
-      </LightsContext.Provider>
-    </ScrollContext.Provider>
+    <ResizeContext.Provider value={{...resizeState}}>
+      <ScrollContext.Provider value={{...scrollState}}>
+        <LightsContext.Provider value={{...lightsState, toggleLight: toggleLight}}>
+          <div className="app-wrapper">
+            <GlobalStyle />
+            <Header />
+            <Home ref={homeRef} />
+            <Showcases ref={showcasesRef} />
+            <Articles ref={articlesRef} />
+            <About ref={aboutRef} />
+            <Contact ref={contactRef} />
+          </div>
+        </LightsContext.Provider>
+      </ScrollContext.Provider>
+    </ResizeContext.Provider>
   );
 }
 

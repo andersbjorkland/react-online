@@ -95,9 +95,9 @@ const CardController = ({content}) => {
 
     const activeButtons = {
         text: content.summary ?? false,
-        github: content.github ?? false,
-        download: content.download ?? false,
-        link: content.url ?? false
+        github: content.github.length > 0 ? content.github : false,
+        download: content.download.length > 0 ? content.download : false,
+        link: content.url.length > 0 ? content.url : false
     }
 
     const buttonIcons = {
@@ -110,7 +110,7 @@ const CardController = ({content}) => {
     const buttons = Object.keys(activeButtons).map(key => {
         if (key === "text") {
             return (
-                <ControlButton key={key} className={activeButtons[key] !== false ? null : "inactive"} onClick={() => timedClickHandler(() => setShowText(!showText))}>
+                <ControlButton key={key} className={activeButtons[key] !== false ? false : "inactive"} onClick={() => timedClickHandler(() => setShowText(!showText))}>
                     <Neon active={activeButtons[key] !== false}>{buttonIcons[key]}</Neon>
                 </ControlButton>
             );
