@@ -1,11 +1,15 @@
 const fetchResults = async (path, page, resultsPerPage, category) => {
 
-    const categoryParam = category ? '&category=' . category : "";
+    let categoryParam = "";
+    if (category && category !== "latest") {
+        categoryParam = category ? '&category=' + category : "";
+    }
 
-    const url = `https://127.0.0.1:8000/projects-api?`
+    let url = `https://andersbjorkland.se/projects-api?`
                     + `&pageSize=${resultsPerPage}`
-                    + categoryParam
                     + `&page=${page}`;
+    
+    url += categoryParam;
 
 
     let numberOfPages = 0;

@@ -11,6 +11,7 @@ const Wrapper = styled.form`
     flex-direction: column;
     gap: 1rem;
     min-height: 12rem;
+    
     padding-bottom: 4rem;
 
     color: var(--lightPink);
