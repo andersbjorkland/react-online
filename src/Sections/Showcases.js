@@ -9,9 +9,8 @@ import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
 import { RefSection } from "../Layout/Section";
-import { categories, featured, design } from "../dev/data/showcases";
 import ResizeContext from "../Hooks/ResizeContext";
-import fetchResults from "../utilities/fetchResults";
+import fetchResults, { fetchProjectsCategories } from "../utilities/fetchResults";
 
 
 const Container = styled.div`
@@ -23,31 +22,23 @@ const Showcases = forwardRef((props, ref) => {
     const resizeContext = useContext(ResizeContext);
     const [resultsPerPage, setResultsPerPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(1);
+    const [isFetching, setIsFetching] = useState(false);
     const [page, setPage] = useState(1);
     const [results, setResults] = useState([]);
-    const [currentCategory, setCurrentCategory] = useState(categories[0]);
-
-    const categoryElements = categories.map(category => {
-        return (
-        <BareButton 
-            key={category} 
-            className={category === currentCategory ? "active" : false}
-            callback={() => {
-                    setCurrentCategory(category);
-                    setPage(1);
-                }
-            }
-        >
-            <Neon>{category}</Neon>
-        </BareButton>)
-    });
+    const [projectCategories, setProjectCategories] = useState(["latest"]);
+    const [currentCategory, setCurrentCategory] = useState(projectCategories[0]);
 
     useEffect(() => {
-
+        setIsFetching(true);
         fetchResults("", page, resultsPerPage, currentCategory)
             .then(pageResults => {
                 setResults(pageResults.results);
                 setNumberOfPages(pageResults.pages);
+                setIsFetching(false);
+            })
+            .catch(error => {
+                console.error(error);
+                setIsFetching(false);
             })
     }, [page, resultsPerPage, currentCategory]);
 
@@ -62,6 +53,15 @@ const Showcases = forwardRef((props, ref) => {
             setPage(parsedPage);
         }
     }, [resizeContext.width, page, resultsPerPage]);
+
+    useEffect(() => {
+        fetchProjectsCategories()
+            .then(result => {
+                const categories = ["latest", ...result.map(category => category["name"])];
+                setProjectCategories(categories);
+            })
+            .catch(error => console.error(error));
+    }, []);
     
     return (
         <RefSection id="showcases" ref={ref} className={props.className ?? false}>
@@ -71,7 +71,20 @@ const Showcases = forwardRef((props, ref) => {
                 </HeadingContainer>
                 <ColumnContainer>
                     <FlexContainer className="mt-2 pink">
-                        {categoryElements}
+                        {projectCategories.map(category => (
+                            <BareButton 
+                                key={category} 
+                                className={category === currentCategory ? (isFetching ? false : "active") : false}
+                                callback={() => {
+                                        setIsFetching(true);
+                                        setCurrentCategory(category);
+                                        setPage(1);
+                                    }
+                                }
+                            >
+                                <Neon>{category}</Neon>
+                            </BareButton>)
+                        )}
                     </FlexContainer>
                     <FlexContainer justify="center" className="mt-2">
                         <ColumnContainer>

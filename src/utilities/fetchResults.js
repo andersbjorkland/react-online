@@ -1,9 +1,18 @@
+export const fetchProjectsCategories = async () => {
+    let url = `https://andersbjorkland.se/projects-api/categories`;
+
+    let response = await fetch(url);
+    let result = await response.json();
+
+    return result;
+}
+
 const fetchResults = async (path, page, resultsPerPage, category) => {
 
     let categoryParam = "";
     if (category && category !== "latest") {
-        categoryParam = category ? '&category=' + category : "";
-    }
+        categoryParam = '&category=' + category;
+    } 
 
     let url = `https://andersbjorkland.se/projects-api?`
                     + `&pageSize=${resultsPerPage}`
@@ -13,6 +22,7 @@ const fetchResults = async (path, page, resultsPerPage, category) => {
 
 
     let numberOfPages = 0;
+
     let response = await fetch(url);
     let result = await response.json();
 
@@ -20,6 +30,7 @@ const fetchResults = async (path, page, resultsPerPage, category) => {
     const results = await result["results"];
 
     return {results: results, pages: numberOfPages, currentPage: page};
+    
 }
 
 export default fetchResults;

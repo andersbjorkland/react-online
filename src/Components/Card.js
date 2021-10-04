@@ -8,6 +8,7 @@ import {interactions} from "../configuration/config";
 import Neon from "../Layout/Neon";
 import timedClickHandler from "../utilities/timedClickHandler";
 import Image from "./Image";
+import Video from "./Video";
 
 export const TYPES = {
     article: "article",
@@ -181,12 +182,27 @@ const Card = ({
     }) => {
 
     const image = content.img ? <Image className={minimize ? "hidden" : "slim"} src={content.img.src} alt={content.img.alt ?? ""} />: false;
-    
+    let video = content.video ?? false;
 
+    let videoElement = false;
+    if (video) {
+        if (video.url.length > 0) {
+            videoElement = (
+                <Video controls autoPlay muted loop>
+                    <source src={video.url} type="video/webm" crossorigin="anonymous" />
+                    Sorry, your browser doesn't support embedded videos
+                </Video>
+            );
+        }
+    }
+
+    useEffect(() => {
+        console.log(content);
+    }, [])
     return (
         <CardContainer content={content} className={minimize ? "minimize" : "normal"}>
             <h4>{content.heading}</h4>
-            {image}
+            {videoElement ? videoElement : image}
             {minimize ? <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon> : <CardController content={content} />}
             
         </CardContainer>
