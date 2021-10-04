@@ -196,9 +196,6 @@ const Card = ({
         }
     }
 
-    useEffect(() => {
-        console.log(content);
-    }, [])
     return (
         <CardContainer content={content} className={minimize ? "minimize" : "normal"}>
             <h4>{content.heading}</h4>
