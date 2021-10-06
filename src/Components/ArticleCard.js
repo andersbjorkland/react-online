@@ -1,5 +1,7 @@
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DOMPurify from "dompurify";
+import marked from "marked";
 import styled from "styled-components";
 import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
@@ -11,11 +13,11 @@ const Container = styled.article`
 
     display: flex;
     flex-direction: column;
-    color: var(--light-blue);
+    color: var(--lightBlue);
 
 
     h4, p, a {
-        color: var(--light-blue);
+        color: var(--lightBlue);
     }
 
     p {
@@ -66,17 +68,17 @@ const getDomainFromUrl = (url) => {
 
 
 const ArticleCard = ({article, minimize = false, ...props}) => {
-    const image = article.img ? <Image className={minimize ? "slim sm-hidden": "slim"} src={article.img.src} alt={article.img.alt ?? ""} />: false;
-    const tags = article.tags ? article.tags.map(tag => (<span key={tag}>{tag}</span>)) : false;
+    const image = article.cover_image ? <Image className={minimize ? "slim sm-hidden": "slim"} src={article.cover_image} alt={article.title ?? ""} />: false;
+    const tags = article.tag_list ? article.tag_list.map(tag => (<span key={tag}>{tag}</span>)) : false;
 
     return (
         <Container>
-            <h4>{article?.heading}</h4>
+            <h4>{article?.title}</h4>
             { image }
-            <MetaContainer><span>by {article?.meta?.author} </span><time> {article?.meta?.date}</time></MetaContainer>
-            <p>{article?.summary}</p>
+            <MetaContainer><span>by {article.user.name} </span><time> {article.published_at}</time></MetaContainer>
+            <p>{ DOMPurify.sanitize(article.description, {USE_PROFILES: {html: true}}) }</p>
             {tags ? <FlexP>{tags}</FlexP> : false} 
-            <FlexContainer className="baseline right"><a href={article.url}>read more on {getDomainFromUrl(article.url)} <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon></a></FlexContainer>
+            <FlexContainer className="baseline right"><a href={article.canonical_url}>read more on {getDomainFromUrl(article.canonical_url)} <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon></a></FlexContainer>
         </Container>
     );
 }

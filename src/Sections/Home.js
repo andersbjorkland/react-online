@@ -61,7 +61,7 @@ const Home = forwardRef((props, ref) => {
             <FlexContainer justify="space-around" className="mt-4 md--mt-8">
                 <ColumnContainer className="blue">
                     <h3>latest article</h3>
-                    <ArticleCard article={{...article}} minimize={true} />
+                    {/* <ArticleCard article={{...article}} minimize={true} /> */}
                 </ColumnContainer>
                 <ColumnContainer>
                     <h3 className="pink">featured work</h3>

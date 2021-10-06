@@ -1,3 +1,20 @@
+export const fetchArticles = async (page=1, resultsPerPage=1, category = "latest") => {
+    let url = `https://127.0.0.1:8000/articles-api`
+    url += `?pageSize=${resultsPerPage}&page=${page}`;
+
+
+    let categoryParam = "";
+    if (category && category !== "latest") {
+        categoryParam = '&category=' + category;
+        url += categoryParam;
+    }
+
+    let response = await fetch(url);
+    let result = await response.json();
+
+    return result;
+}
+
 export const fetchProjectsCategories = async () => {
     let url = `https://andersbjorkland.se/projects-api/categories`;
 

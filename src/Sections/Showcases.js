@@ -89,7 +89,7 @@ const Showcases = forwardRef((props, ref) => {
                     <FlexContainer justify="center" className="mt-2">
                         <ColumnContainer>
                             <Pagination numberOfPages={numberOfPages} setPage={setPage} currentPage={page} color="pink">
-                                <FlexContainer gap={{column: 2}}>{results.map(el => <Card key={el.heading + el.meta.date} content={el} />)}</FlexContainer>
+                                <FlexContainer justify="center" gap={{column: 2}}>{results.map(el => <Card key={el.heading + el.meta.date} content={el} />)}</FlexContainer>
                             </Pagination>
                         </ColumnContainer>
                     </FlexContainer>
