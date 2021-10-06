@@ -189,7 +189,7 @@ const Card = ({
         if (video.url.length > 0) {
             videoElement = (
                 <Video controls autoPlay muted loop>
-                    <source src={video.url} type="video/webm" crossorigin="anonymous" />
+                    <source src={video.url} type="video/webm" crossOrigin="anonymous" />
                     Sorry, your browser doesn't support embedded videos
                 </Video>
             );
