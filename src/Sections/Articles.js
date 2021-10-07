@@ -21,10 +21,12 @@ const Articles = forwardRef((props, ref) => {
     const resizeContext = useContext(ResizeContext);
 
     const [page, setPage] = useState(1);
+    const [pages, setPages] = useState(1);
     const [resultsPerPage, setResultsPerPage] = useState(1);
     const [results, setResults] = useState(null);
+    const [tags, setTags] = useState(["latest"]);
     const [card, setCard] = useState();
-    const [currentCategory, setCurrentCategory] = useState(categories[0]);
+    const [currentCategory, setCurrentCategory] = useState(tags[0]);
 
     useEffect(() => {
         if (resizeContext.width > 800) {
@@ -38,7 +40,7 @@ const Articles = forwardRef((props, ref) => {
         }
     }, [resizeContext.width, page, resultsPerPage]);
 
-    const categoryElements = categories.map(category => {
+    const categoryElements = tags.map(category => {
         return (
         <BareButton 
             key={category} 
@@ -55,13 +57,17 @@ const Articles = forwardRef((props, ref) => {
     });
 
     useEffect(() => {
-        fetchArticles(page, resultsPerPage)
+        fetchArticles(page, resultsPerPage, currentCategory)
             .then(result => {
-                setResults(result);
+                setResults(result.result);
+                console.log(result);
+                let pages = Math.ceil(result.meta.items/resultsPerPage);
+                setPages(pages);
+                setTags(["latest", ...result.meta.tags])
             })
             .catch(error => console.error(error));
 
-    }, [page, resultsPerPage]);
+    }, [page, resultsPerPage, currentCategory]);
     
     
     return (
@@ -72,11 +78,24 @@ const Articles = forwardRef((props, ref) => {
                 </HeadingContainer>
                 <ColumnContainer>
                     <FlexContainer className="mt-2 blue">
-                        {categoryElements}
+                        {tags.map( category => {
+                            return (
+                            <BareButton 
+                                key={category} 
+                                className={category === currentCategory ? "active" : false}
+                                callback={() => {
+                                        setCurrentCategory(category);
+                                        setPage(1);
+                                    }
+                                }
+                            >
+                                <Neon>{category}</Neon>
+                            </BareButton>)
+                        })}
                     </FlexContainer>
                     <FlexContainer justify="center" className="mt-2">
                         <ColumnContainer>
-                            <Pagination numberOfPages={results?.length} setPage={setPage} currentPage={page} color="blue">
+                            <Pagination numberOfPages={pages} setPage={setPage} currentPage={page} color="blue">
                                 <FlexContainer justify="center" gap={{column: 2}}>{results ? results.map(result => <ArticleCard key={result.id} article={result} /> ) : false }</FlexContainer>
                             </Pagination>
                         </ColumnContainer>

@@ -75,10 +75,10 @@ const ArticleCard = ({article, minimize = false, ...props}) => {
         <Container>
             <h4>{article?.title}</h4>
             { image }
-            <MetaContainer><span>by {article.user.name} </span><time> {article.published_at}</time></MetaContainer>
+            <MetaContainer><span>by {article.user.name} </span><time> {article.readable_publish_date}</time></MetaContainer>
             <p>{ DOMPurify.sanitize(article.description, {USE_PROFILES: {html: true}}) }</p>
             {tags ? <FlexP>{tags}</FlexP> : false} 
-            <FlexContainer className="baseline right"><a href={article.canonical_url}>read more on {getDomainFromUrl(article.canonical_url)} <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon></a></FlexContainer>
+            <FlexContainer className="baseline right"><a href={article.canonical_url} target="_blank" rel="noopener">read more on {getDomainFromUrl(article.canonical_url)} <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon></a></FlexContainer>
         </Container>
     );
 }
