@@ -7,7 +7,6 @@ import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
 import { RefSection } from "../Layout/Section";
-import { categories, latest, devops } from "../dev/data/articles";
 import ArticleCard from "../Components/ArticleCard";
 import { fetchArticles } from "../utilities/fetchResults";
 import ResizeContext from "../Hooks/ResizeContext";
@@ -25,7 +24,7 @@ const Articles = forwardRef((props, ref) => {
     const [resultsPerPage, setResultsPerPage] = useState(1);
     const [results, setResults] = useState(null);
     const [tags, setTags] = useState(["latest"]);
-    const [card, setCard] = useState();
+    const [isFetching, setIsFetching] = useState(false);
     const [currentCategory, setCurrentCategory] = useState(tags[0]);
 
     useEffect(() => {
@@ -40,32 +39,20 @@ const Articles = forwardRef((props, ref) => {
         }
     }, [resizeContext.width, page, resultsPerPage]);
 
-    const categoryElements = tags.map(category => {
-        return (
-        <BareButton 
-            key={category} 
-            className={category === currentCategory ? "active" : false}
-            callback={() => {
-                    setCurrentCategory(category);
-                    setResults(category === "devops" ? devops : latest);
-                    setPage(1);
-                }
-            }
-        >
-            <Neon>{category}</Neon>
-        </BareButton>)
-    });
-
     useEffect(() => {
+        setIsFetching(true);
         fetchArticles(page, resultsPerPage, currentCategory)
             .then(result => {
                 setResults(result.result);
-                console.log(result);
                 let pages = Math.ceil(result.meta.items/resultsPerPage);
                 setPages(pages);
-                setTags(["latest", ...result.meta.tags])
+                setTags(["latest", ...result.meta.tags]);
+                setIsFetching(false);
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+                setIsFetching(false);
+            });
 
     }, [page, resultsPerPage, currentCategory]);
     
@@ -82,8 +69,9 @@ const Articles = forwardRef((props, ref) => {
                             return (
                             <BareButton 
                                 key={category} 
-                                className={category === currentCategory ? "active" : false}
+                                className={category === currentCategory ? (isFetching ? false : "active") : false}
                                 callback={() => {
+                                        setIsFetching(true);
                                         setCurrentCategory(category);
                                         setPage(1);
                                     }

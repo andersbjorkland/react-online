@@ -1,7 +1,6 @@
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DOMPurify from "dompurify";
-import marked from "marked";
 import styled from "styled-components";
 import FlexContainer from "../Layout/FlexContainer";
 import Neon from "../Layout/Neon";
@@ -78,7 +77,7 @@ const ArticleCard = ({article, minimize = false, ...props}) => {
             <MetaContainer><span>by {article.user.name} </span><time> {article.readable_publish_date}</time></MetaContainer>
             <p>{ DOMPurify.sanitize(article.description, {USE_PROFILES: {html: true}}) }</p>
             {tags ? <FlexP>{tags}</FlexP> : false} 
-            <FlexContainer className="baseline right"><a href={article.canonical_url} target="_blank" rel="noopener">read more on {getDomainFromUrl(article.canonical_url)} <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon></a></FlexContainer>
+            <FlexContainer className="baseline right"><a href={article.canonical_url} target="_blank" rel="noopener noreferrer">read more on {getDomainFromUrl(article.canonical_url)} <Neon><FontAwesomeIcon icon={faExternalLinkAlt} /></Neon></a></FlexContainer>
         </Container>
     );
 }
