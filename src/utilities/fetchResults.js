@@ -16,6 +16,8 @@ export const fetchArticles = async (page=1, resultsPerPage=1, category = "latest
     return {...result};
 }
 
+
+
 export const fetchProjectsCategories = async () => {
     let url = `https://andersbjorkland.se/projects-api/categories`;
 

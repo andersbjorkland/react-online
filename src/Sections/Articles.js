@@ -11,7 +11,6 @@ import ArticleCard from "../Components/ArticleCard";
 import { fetchArticles } from "../utilities/fetchResults";
 import ResizeContext from "../Hooks/ResizeContext";
 
-
 const Container = styled.div`
     font-weight: lighter;
 `;
@@ -28,23 +27,25 @@ const Articles = forwardRef((props, ref) => {
     const [currentCategory, setCurrentCategory] = useState(tags[0]);
 
     useEffect(() => {
-        if (resizeContext.width > 800) {
-            setResultsPerPage(3);
-            const parsedPage = Math.ceil(page / resultsPerPage);
+
+        
+        setIsFetching(true);
+
+        let parsedPage = 1;
+        let perPage = 3;
+        if (resultsPerPage > 2) {
+            parsedPage = Math.ceil(page / perPage);
             setPage(parsedPage);
         } else {
-            setResultsPerPage(1);
-            const parsedPage = page * resultsPerPage;
+            perPage = 1;
+            parsedPage = page * perPage;
             setPage(parsedPage);
         }
-    }, [resizeContext.width, page, resultsPerPage]);
-
-    useEffect(() => {
-        setIsFetching(true);
-        fetchArticles(page, resultsPerPage, currentCategory)
+        
+        fetchArticles(parsedPage, perPage, currentCategory)
             .then(result => {
                 setResults(result.result);
-                let pages = Math.ceil(result.meta.items/resultsPerPage);
+                let pages = Math.ceil(result.meta.items/perPage);
                 setPages(pages);
                 setTags(["latest", ...result.meta.tags]);
                 setIsFetching(false);
@@ -55,6 +56,14 @@ const Articles = forwardRef((props, ref) => {
             });
 
     }, [page, resultsPerPage, currentCategory]);
+
+    useEffect(() => {
+        if (resizeContext.width > 800) {
+            setResultsPerPage(3);
+        } else {
+            setResultsPerPage(1);
+        }
+    }, [resizeContext.width])
     
     
     return (

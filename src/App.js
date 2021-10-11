@@ -92,6 +92,8 @@ function App() {
   }, [scrollState]);
 
   useEffect(() => {
+    setResizeState({width: window.innerWidth});
+
     const resizeHandler = () => {
       timedClickHandler(() => {
           setResizeState({width: window.innerWidth});

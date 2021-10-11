@@ -18,7 +18,6 @@ const Container = styled.div`
 `;
 
 const Showcases = forwardRef((props, ref) => {
-
     const resizeContext = useContext(ResizeContext);
     const [resultsPerPage, setResultsPerPage] = useState(1);
     const [numberOfPages, setNumberOfPages] = useState(1);
@@ -30,7 +29,19 @@ const Showcases = forwardRef((props, ref) => {
 
     useEffect(() => {
         setIsFetching(true);
-        fetchResults("", page, resultsPerPage, currentCategory)
+
+        let parsedPage = 1;
+        let perPage = 3;
+        if (resultsPerPage > 2) {
+            parsedPage = Math.ceil(page / perPage);
+            setPage(parsedPage);
+        } else {
+            perPage = 1;
+            parsedPage = page * perPage;
+            setPage(parsedPage);
+        }
+
+        fetchResults("", parsedPage, perPage, currentCategory)
             .then(pageResults => {
                 setResults(pageResults.results);
                 setNumberOfPages(pageResults.pages);
@@ -39,20 +50,16 @@ const Showcases = forwardRef((props, ref) => {
             .catch(error => {
                 console.error(error);
                 setIsFetching(false);
-            })
-    }, [page, resultsPerPage, currentCategory]);
+            });
+    }, [page, currentCategory, resultsPerPage]);
 
     useEffect(() => {
         if (resizeContext.width > 800) {
             setResultsPerPage(3);
-            const parsedPage = Math.ceil(page / resultsPerPage);
-            setPage(parsedPage);
         } else {
             setResultsPerPage(1);
-            const parsedPage = page * resultsPerPage;
-            setPage(parsedPage);
         }
-    }, [resizeContext.width, page, resultsPerPage]);
+    }, [resizeContext.width])
 
     useEffect(() => {
         fetchProjectsCategories()
@@ -62,7 +69,7 @@ const Showcases = forwardRef((props, ref) => {
             })
             .catch(error => console.error(error));
     }, []);
-    
+
     return (
         <RefSection id="showcases" ref={ref} className={props.className ?? false}>
             <Container>
