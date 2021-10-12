@@ -219,6 +219,12 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
 
+    @media screen and (max-width: 800px) {
+        .md-hidden {
+            display: none;
+        }
+    }
+
 
     @media screen and (min-width: 800px) {
         .show-sm {
