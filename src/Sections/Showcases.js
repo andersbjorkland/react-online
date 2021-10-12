@@ -19,7 +19,7 @@ const Container = styled.div`
 
 const Showcases = forwardRef((props, ref) => {
     const resizeContext = useContext(ResizeContext);
-    const [resultsPerPage, setResultsPerPage] = useState(1);
+    const [resultsPerPage, setResultsPerPage] = useState(resizeContext.width > 800 ? 3 : 1);
     const [numberOfPages, setNumberOfPages] = useState(1);
     const [isFetching, setIsFetching] = useState(false);
     const [page, setPage] = useState(1);

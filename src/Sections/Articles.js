@@ -20,8 +20,8 @@ const Articles = forwardRef((props, ref) => {
 
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
-    const [resultsPerPage, setResultsPerPage] = useState(1);
-    const [results, setResults] = useState(null);
+    const [resultsPerPage, setResultsPerPage] = useState(resizeContext.width > 800 ? 3 : 1);
+    const [results, setResults] = useState([]);
     const [tags, setTags] = useState(["latest"]);
     const [isFetching, setIsFetching] = useState(false);
     const [currentCategory, setCurrentCategory] = useState(tags[0]);
