@@ -4,6 +4,8 @@ import HeadingContainer from "../Components/HeadingContainer";
 import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
 import { RefSection } from "../Layout/Section";
+import profilePic from "../assets/Profile.png"
+import Image from "../Components/Image";
 
 
 const Container = styled.div`
@@ -12,6 +14,11 @@ const Container = styled.div`
         font-weight: bolder;
         color: var(--lightPink);
     }
+
+    p {
+        line-height: 175%;
+    }
+
     a, p, li {
         color: var(--pinkWhite);
     }
@@ -20,7 +27,9 @@ const Container = styled.div`
     }
     li {
         margin-top: 0.4rem;
+        font-size: 0.8rem;
     }
+
 `;
 
 const InfoContainer = styled.div`
@@ -31,6 +40,22 @@ const InfoContainer = styled.div`
     max-width: 25rem;
 `;
 
+const AboutContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 800px) {
+        flex-direction: row;
+        justify-content: space-between;
+
+        &>div {
+            width: 25%;
+            min-width: 15rem;
+        }
+    }
+
+`;
+
 const About = forwardRef((props, ref) => {    
     
     return (
@@ -39,11 +64,14 @@ const About = forwardRef((props, ref) => {
                 <HeadingContainer>
                     <h2>about</h2>
                 </HeadingContainer>
-                <FlexContainer>
+                <AboutContainer>
                     <ColumnContainer>
                         <p>The name is Anders Björkland. I love everything about web development - from the process of designing all the way through deploying. This is my space on the web for sharing my insights and projects. On my other site, andersbjorkland.se, I’ll focus on how I can help small and medium sized businesses with their web presence. If that’s more up your ally, check that site out! </p>
                     </ColumnContainer>
-                    <ColumnContainer>
+                    <ColumnContainer className="md-hidden">
+                        <Image src={profilePic} alt="Fullstack webdeveloper Anders Björkland with his trusty coffee" />
+                    </ColumnContainer>
+                    <FlexContainer justify="space-between">
                         <InfoContainer>
                             <h3>technologies I adore <br /><span className="md-text">and occasionally write about</span></h3>
                             <FlexContainer>
@@ -83,8 +111,8 @@ const About = forwardRef((props, ref) => {
                             </div>
                         </FlexContainer>
                     </InfoContainer>
-                    </ColumnContainer>
-                </FlexContainer>
+                    </FlexContainer>
+                </AboutContainer>
             </Container>
         </RefSection>
     );
