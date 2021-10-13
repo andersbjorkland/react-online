@@ -5,7 +5,6 @@ import ColumnContainer from "../Layout/ColumnContainer";
 import FlexContainer from "../Layout/FlexContainer";
 import { RefSection } from "../Layout/Section";
 import profilePic from "../assets/Profile.png"
-import Image from "../Components/Image";
 import timedClickHandler from "../utilities/timedClickHandler";
 import { motion } from "framer-motion";
 
