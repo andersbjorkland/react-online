@@ -98,8 +98,6 @@ const About = forwardRef((props, ref) => {
 
     const imageClickHandler = () => {
         timedClickHandler(() => {
-            console.log("Hey, that's me you're clicking on! " + count);
-            console.log({quote});
             setCount(count + 1);
 
             if (showQuote) {
