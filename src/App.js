@@ -11,7 +11,7 @@ import Contact from './Sections/Contact';
 import ScrollContext from './Hooks/ScrollContext';
 import timedClickHandler from './utilities/timedClickHandler';
 import ResizeContext from './Hooks/ResizeContext';
-
+import BgLines from './Layout/BgLines';
 
 function App() {
 
@@ -109,6 +109,7 @@ function App() {
         <LightsContext.Provider value={{...lightsState, toggleLight: toggleLight}}>
           <div className="app-wrapper">
             <GlobalStyle />
+            <BgLines />
             <Header />
             <Home ref={homeRef} />
             <Showcases ref={showcasesRef} />
